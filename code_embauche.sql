@@ -67,8 +67,10 @@ create table conge(
     datedebut date not null,
     datefin date not null,
     motif varchar(20),
+    accepte boolean default null,
     FOREIGN KEY (idemploye) REFERENCES employe(idemploye)
 );
+
 
 create table cnaps(
     idcnaps varchar(10) default 'CN' ||nextval('cnaps_seq') primary key,

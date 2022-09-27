@@ -30,7 +30,7 @@ create table recrutement(
     infoposte varchar(300) not null,
     requis varchar(300) not null,
     cloture int not null default 0,
-    datelimite date default  date default '31/12/2022',
+    datelimite date default '31/12/2022',
     FOREIGN KEY(iddept) REFERENCES departement(iddept) 
 );
 
@@ -127,8 +127,10 @@ insert into reponsechamp(idcandidat,idchamp,valiny,noty) values
 create table test(
     idtest varchar(10) default 'TE'||nextval('test_seq') primary key,
     idrecrutement varchar(10),
+    fichier varchar(40),
     FOREIGN KEY(idrecrutement) REFERENCES recrutement(idrecrutement)
 );
+
 insert into test(idrecrutement) values
 ('RE1')
 ;
@@ -239,12 +241,6 @@ select avg(experience) experience from (select sum(valiny::int+0) experience fro
 -- Trois meilleurs
 select*from resultat_selection join candidat on resultat_selection.idcandidat=candidat.idcandidat order by note desc limit 3 ;
 
-create table test(
-    idtest varchar(10) default 'TE'||nextval('test_seq') primary key,
-    idrecrutement varchar(10),
-    fichier varchar(40),
-    FOREIGN KEY(idrecrutement) REFERENCES recrutement(idrecrutement)
-);
 
 -- Apres test
 -- Moyenne note
