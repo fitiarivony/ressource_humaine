@@ -61,7 +61,7 @@ create table contrat(
     idcontrat varchar(10) default 'CT'||nextval('contrat_seq') primary key,
     typecontrat varchar(30) not null
 );
-
+insert into contrat(typecontrat)values('CDD'),('CDI'),('Contrat d essai');
 create table assignercontrat(
     idassigner varchar(10) default 'AS'||nextval('assignercontrat_seq') primary key,
     idcontrat varchar(10) not null,
@@ -107,4 +107,16 @@ create table salaires (
     datemodif date not null default current_timestamp,
     FOREIGN KEY (idcategorie) REFERENCES categorie(idcategorie)
 );
+insert into salaires(idcategorie,sme,sma) values
+('CA1',184653,189476),('CA3',184653,189476),
+('CA2',185341,194987),('CA4',185341,194987),
+('CA5',186720,195677),('CA8',186720,195677),
+('CA6',192230,204634),('CA9',192230,204634),
+('CA7',203944,217036),('CA10',203944,217036)
+;
+
+
+
+
+
 
