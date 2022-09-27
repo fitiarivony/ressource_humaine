@@ -16,7 +16,6 @@ create sequence appointment_seq;
 create sequence diplome_seq;
 create sequence assignerdiplome_seq;
 
-create sequence affil_cnaps_seq; 
 
 
 create table departement(

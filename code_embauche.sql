@@ -9,6 +9,8 @@ CREATE sequence conge_seq;
 create sequence planning_seq;
 create sequence sm_seq;
 
+create sequence affil_cnaps_seq; 
+
 create table groupe(
     idgroupe varchar(10) default 'GR'||nextval('groupe_seq') primary key,
     nomgroupe varchar(20) not null
