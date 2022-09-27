@@ -259,3 +259,6 @@ create view  qcm_vrai as select count(vrai),idrecrutement from (select reponsete
 select count(idreponsetest), idrecrutement from reponsetest join question on reponsetest.idquestion=question.idquestion join test on question.idtest=test.idtest group by idrecrutement;
 
 create view resultat_test as  select sum(note)/count(idreponsetest) val, idcandidat,idrecrutement from reponsetest join question on reponsetest.idquestion=question.idquestion join test on question.idtest=test.idtest group by idcandidat,idrecrutement;
+
+create view v_stats_appointment as 
+select recrutement.idrecrutement, nomposte, moyenne from recrutement left join (select idrecrutement,avg(noty) as moyenne from appointment group by idrecrutement) as moy on moy.idrecrutement=recrutement.idrecrutement ;
