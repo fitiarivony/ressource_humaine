@@ -1,0 +1,16 @@
+{
+    "question": [{
+        "numero_question": 1,
+        "intitule_question": "vous-etes vivant?",
+        "type_question": "CH",
+        "reponse_possible": ["oui", "non"],
+        "reponse_correct": "oui"
+    }, {
+        "numero_question": 3,
+        "intitule_question": "vous-etes alefa?",
+        "type_question": "LIB",
+        "reponse_possible": [],
+        "reponse_correct": null
+    }],
+    "idrecrutement": "RC1"
+}
