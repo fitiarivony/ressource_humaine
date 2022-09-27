@@ -13,6 +13,9 @@ create table groupe(
     idgroupe varchar(10) default 'GR'||nextval('groupe_seq') primary key,
     nomgroupe varchar(20) not null
 );
+insert into groupe(nomgroupe) values
+('Groupe 1'),('Groupe 2'),('Groupe 3'),('Groupe 4'),('Groupe 5')
+;
 
 create table categorie(
     idcategorie varchar(10) default 'CA'||nextval('categorie_seq') primary key,
@@ -20,6 +23,15 @@ create table categorie(
     idgroupe varchar(10) not null,
     FOREIGN KEY (idgroupe) REFERENCES groupe(idgroupe)
 );
+insert into categorie(nomcategorie,idgroupe) VALUES 
+('M1','GR1'),('M2','GR1'),('1A','GR1'),('1B','GR1'),
+('OS1','GR2'),('OS2','GR2'),('OS3','GR2'),
+('2A','GR2'),('2B','GR2'),('3A','GR2'),('3B','GR2'),
+('A1','GR2'),('A2','GR2'),('A3','GR2'),('B1','GR2'),('B2','GR2'),('B3','GR2'),('B4','GR2'),
+('C1','GR2'),('C2','GR2'),('C3','GR2'),('D1','GR2'),('D2','GR2'),('D3','GR2'),
+('OP2','GR3'),('OP3','GR3'),('4A','GR3'),('4B','GR3'),('5A','GR3'),('5B','GR2'),
+('A4','GR3'),('B5','GR3'),('C4','GR3'),('D4','GR3')
+;
 
 create table fonction(
     idfonction varchar(10) default 'FO'||nextval('fonction_seq') primary key,
@@ -91,6 +103,8 @@ create table salaires (
     idsalairemin varchar(10) default 'SA'||nextval('sm_seq') primary key,
     sme float not null,
     sma float not null,
-    datemodif date not null default current_timestamp
+    idcategorie varchar(10),
+    datemodif date not null default current_timestamp,
+    FOREIGN KEY (idcategorie) REFERENCES categorie(idcategorie)
 );
 
