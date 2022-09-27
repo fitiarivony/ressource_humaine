@@ -1,0 +1,14 @@
+[
+    {"questions":
+        [
+            {
+                "numero_question":1,
+                "intitule_question":"Qu est ce que React",
+                "type_question":"CH",
+                "reponse_possible":["oui","non"],
+                "reponse_correct":"non"
+            }
+        ],
+            "recrutement":"RC1"
+    }
+]
