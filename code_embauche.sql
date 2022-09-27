@@ -5,14 +5,16 @@ create sequence fonction_seq;
 create sequence contrat_seq;
 create sequence assignercontrat_seq;
 CREATE sequence cnaps_seq;
+CREATE sequence conge_seq;
 create sequence planning_seq;
+create sequence sm_seq;
 
 create table groupe(
     idgroupe varchar(10) default 'GR'||nextval('groupe_seq') primary key,
     nomgroupe varchar(20) not null
 );
 
-create categorie(
+create table categorie(
     idcategorie varchar(10) default 'CA'||nextval('categorie_seq') primary key,
     nomcategorie varchar(30) not null,
     idgroupe varchar(10) not null,
@@ -79,8 +81,7 @@ create table planning(
     idplanning varchar(10) default 'PL'||nextval('planning_seq') primary key,
     idemploye varchar(10) not null,
     datedebut date not null,
-    datedebut date not null,
-    datefin not null,
+    datefin date not null,
     FOREIGN KEY (idemploye) REFERENCES employe(idemploye)
 );
 
@@ -88,6 +89,6 @@ create table salaires (
     idsalairemin varchar(10) default 'SA'||nextval('sm_seq') primary key,
     sme float not null,
     sma float not null,
-    datemodif date not null default current_timestamp,
+    datemodif date not null default current_timestamp
 );
 
