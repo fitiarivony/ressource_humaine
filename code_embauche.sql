@@ -41,6 +41,11 @@ create table fonction(
     idcategorie varchar(10) not null,
     FOREIGN KEY (idcategorie) REFERENCES categorie(idcategorie) 
 );
+insert into fonction(nomfonction,idcategorie) values
+('Fonction1','CA1'),('Fonction2','CA2'),('Fonction3','CA34'),('Fonction','CA4'),
+('Fonction6','CA34')
+;
+
 
 create table employe(
     idemploye varchar(10) default 'EM'||nextval('employe_seq') primary key,
@@ -49,8 +54,8 @@ create table employe(
     genre varchar(20) not null,
     adresse varchar(20) not null,
     situation_juridique varchar(30) not null,
-    debany varchar(10) not null,
-    matr_cnaps varchar(10) not null,
+    debany varchar(10),
+    matr_cnaps varchar(10),
     dateEmbauche date default current_timestamp,
     idfonction varchar(10) not null,
     iddept varchar(10) not null,
@@ -58,6 +63,35 @@ create table employe(
     FOREIGN KEY (idfonction) REFERENCES fonction(idfonction),
     FOREIGN KEY (iddept) REFERENCES departement(iddept)
 );
+
+-- Deba ny dept
+insert into employe(nom,prenom,adresse,genre,situation_juridique,idfonction,iddept,salairebase) values
+('Rakoto','Jean','Andoharanofotsy','Homme','Propre','FO5','DE5',30000000),
+('Rabe','Jeanne','Analakely','Femme','Propre','FO5','DE4',30000000),
+('Rajao','Johnny','Alarobia','Homme','Propre','FO5','DE3',30000000),
+('Ravelo','Oli','Ambanidia','Femme','Propre','FO5','DE2',30000000),
+('Randria','Bema','Ambohibao','Homme','Propre','FO5','DE1',30000000)
+;
+
+-- Mpiasa ny dept
+insert into employe(nom,prenom,adresse,genre,situation_juridique,debany,idfonction,iddept,salairebase) values
+('Rabe','Rova','Ankadifotsy','Homme','Propre','EM1','FO4','DE1',10000000),
+('Rajao','Raly','Ambohimanarina','Femme','Propre','EM1','FO4','DE1',10000000),
+('Randria','Kolo','Ankadimbahoaka','Femme','Propre','EM6','FO3','DE1',5000000),
+('Randria','Johan','Antanimena','Homme','Propre','EM6','FO3','DE1',5000000),
+('Andria','Holy','Andraharo','Femme','Propre','EM1','FO2','DE1',800000),
+('Ravalo','Faly','Andraharo','Homme','Propre','EM1','FO2','DE1',8000000),
+
+('Andria','Faneva','Ankadifotsy','Homme','Propre','EM2','FO4','DE2',10000000),
+('Rasamy','Andy','Andraharo','Homme','Propre','EM2','FO4','DE2',10000000),
+('Andrianarison','Adrian','Betafo','Homme','Propre','EM12','FO3','DE2',8000000),
+('Rajaonarison','Raoul','Ambodivonkely','Homme','Propre','EM12','FO3','DE2',7000000),
+('Rabejahavo','Kanto','Anosivavaka','Femme','Propre','EM12','FO3','DE2',7000000),
+('Rakoto','Auriel','Alasora','Femme','Propre','EM12','FO3','DE2',6000000)
+;
+
+
+
 
 create table contrat(
     idcontrat varchar(10) default 'CT'||nextval('contrat_seq') primary key,

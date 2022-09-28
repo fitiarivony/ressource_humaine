@@ -15,6 +15,7 @@ create sequence reponsetest_sep;
 create sequence appointment_seq;
 create sequence diplome_seq;
 create sequence assignerdiplome_seq;
+create sequence reponsetestCandidat_seq;
 
 
 
@@ -137,44 +138,15 @@ insert into test(idrecrutement) values
 ('RE1')
 ;
 
-create table typequestion(
-    idtype varchar(10) default 'TY'||nextval('typequestion_seq') primary key,
-    typeseq varchar(30) not null
-);
-insert into typequestion(typeseq) values('Champ libre'),('Oui ou non');
 
-create table question(
-    idquestion varchar(10) default 'QU'||nextval('question_seq') primary key,
-    intitulequestion varchar(255) not null,
-    reponse int not null,
-    idtest varchar(10),
-    idtypequestion varchar(10),
-    FOREIGN KEY (idtest) REFERENCES test(idtest),
-    FOREIGN KEY (idtypequestion) REFERENCES typequestion(idtype)
-);
-insert into question (intitulequestion,reponse,idtest,idtypequestion) values 
-('Question 1',0,'TE1','TY2'),
-('Question 2',1,'TE1','TY2'),
-('Question 3',1,'TE1','TY2'),
-('Question 4',2,'TE1','TY1'),
-('Question 5',2,'TE1','TY1'),
-('Question 6',2,'TE1','TY1')
- 
-;
-
-create table reponsetest(
-    idreponsetest varchar(10) default 'RT'||nextval('reponsetest_sep') primary key,
-    idquestion varchar(10),
+CREATE TABLE reponsetestCandidat(
+    idreponsetestcandidat varchar(10) default 'REC'||nextval('reponsetestCandidat_seq') PRIMARY KEY,
+    idrecrutement varchar(10),
     idcandidat varchar(10),
-    reponse varchar(10),
-    note int not null,
-    FOREIGN KEY (idquestion) REFERENCES question(idquestion),
-    FOREIGN KEY (idcandidat) REFERENCES candidat(idcandidat)
-);  
-insert into reponsetest (idquestion,idcandidat,reponse,note) values
-('QU1','CA1','0',10),('QU2','CA1','1',10),('QU3','CA1','0',0),('QU4','CA1','Super',5),('QU5','CA1','Mal',9),('QU6','CA1','SUP',2),
-('QU1','CA2','1',0),('QU2','CA2','0',0),('QU3','CA2','1',10),('QU4','CA2','Cool',6),('QU5','CA2','Calme',10),('QU6','CA2','Lala',4),
-('QU1','CA3','0',10),('QU2','CA3','1',10),('QU3','CA3','1',10),('QU4','CA3','juju',9),('QU5','CA3','lili',12),('QU6','CA3','pois',12);
+    fichier varchar(40),
+    FOREIGN KEY(idrecrutement) REFERENCES recrutement(idrecrutement),
+    FOREIGN KEY(idcandidat) REFERENCES candidat(idcandidat)
+);
 
 
 create table appointment(
@@ -193,17 +165,6 @@ create table administrateur(
 );
 insert into administrateur(identifiant,mdp) values ('admin','admin');
 
--- note mpianatra
-
- select sum(noty*coefficient)/sum(coefficient) note,idcandidat,idrecrutement from reponsechamp join champ on reponsechamp.idchamp=champ.idchamp group by idcandidat,idrecrutement;
--- moyenne note
-select avg(val) moyenne from ( select sum(noty*coefficient)/sum(coefficient) val, idcandidat,idrecrutement from reponsechamp join champ on reponsechamp.idchamp=champ.idchamp group by idcandidat,idrecrutement) as moyenne;
-
--- nb de diplome
-select count(assignerdiplome.iddiplome),nomdiplome from assignerdiplome join diplome on assignerdiplome.iddiplome=diplome.iddiplome group by assignerdiplome.iddiplome,nomdiplome;
-
--- moyenne de nb de diplome par personne
-select avg(moyenne) diplome from (select count(assignerdiplome.iddiplome) moyenne ,idrecrutement from assignerdiplome join assignercandidature on assignerdiplome.idcandidat=assignercandidature.idcandidat group by assignerdiplome.idcandidat,idrecrutement) as val;
 
 -- genre
 create view stat_genre as 
@@ -211,22 +172,11 @@ select count(idreponse) nombre,'Femme' as sexe from reponsechamp join champ on r
 union
 select count(idreponse),'Homme' from reponsechamp join champ on reponsechamp.idchamp=champ.idchamp where reponsechamp.idchamp='CH1' and valiny like '%Homme%';
 
--- moyenne age
-SELECT avg(extract(YEAR from AGE(current_date,datedenaissance))) age from candidat join assignercandidature on candidat.idcandidat=assignercandidature.idcandidat group by idrecrutement;
-
--- moyenne nb d'annee d'expérience
-select avg(experience) experience from (select sum(valiny::int+0) experience from reponsechamp join champ on reponsechamp.idchamp=champ.idchamp where reponsechamp.idchamp='CH3' group by idcandidat,idrecrutement) as annee;
-
 
 
 -- Resultat selection 
 create view resultat_selection as  select sum(noty*coefficient)/sum(coefficient) note,idcandidat,idrecrutement from reponsechamp join champ on reponsechamp.idchamp=champ.idchamp group by idcandidat,idrecrutement;
 
--- nb de diplome 
-select count(assignerdiplome.iddiplome),nomdiplome from assignerdiplome join diplome on assignerdiplome.iddiplome=diplome.iddiplome where idcandidat in (select idcandidat from resultat_selection where note>=10) group by assignerdiplome.iddiplome,nomdiplome;
-
--- moyenne de nb de diplome par personne
-select avg(moyenne) diplome from (select count(assignerdiplome.iddiplome) moyenne ,idrecrutement from assignerdiplome join assignercandidature on assignerdiplome.idcandidat=assignercandidature.idcandidat  where assignerdiplome.idcandidat in (select idcandidat from resultat_selection where note>=10) group by assignerdiplome.idcandidat,idrecrutement) as val;
 
 -- genre
 create view stat_genre_apres_select as 
@@ -234,29 +184,24 @@ select count(idreponse) nombre,'Femme' as sexe from reponsechamp join champ on r
 union
 select count(idreponse),'Homme' from reponsechamp join champ on reponsechamp.idchamp=champ.idchamp where reponsechamp.idchamp='CH1' and valiny like '%Homme%' and idcandidat in (select idcandidat from resultat_selection where note>=10);
 
--- moyenne age
-SELECT avg(extract(YEAR from AGE(current_date,datedenaissance))) age from candidat join assignercandidature on candidat.idcandidat=assignercandidature.idcandidat where candidat.idcandidat in (select idcandidat from resultat_selection where note>=10) group by idrecrutement;
 
--- moyenne nb d'annee d'expérience
-select avg(experience) experience from (select sum(valiny::int+0) experience from reponsechamp join champ on reponsechamp.idchamp=champ.idchamp where reponsechamp.idchamp='CH3' and idcandidat in (select idcandidat from resultat_selection where note>=10) group by idcandidat,idrecrutement) as annee;
-
--- Trois meilleurs
-select*from resultat_selection join candidat on resultat_selection.idcandidat=candidat.idcandidat order by note desc limit 3 ;
-
-
--- Apres test
--- Moyenne note
-select avg(val) moyenne from ( select sum(note)/count(idreponsetest) val, idcandidat,idrecrutement from reponsetest join question on reponsetest.idquestion=question.idquestion join test on question.idtest=test.idtest group by idcandidat,idrecrutement) as moyenne;
-
--- Resultat
-select sum(note)/count(idreponsetest) val, idcandidat,idrecrutement from reponsetest join question on reponsetest.idquestion=question.idquestion join test on question.idtest=test.idtest group by idcandidat,idrecrutement;
-
--- Pourcentage de QCM vrai
-create view  qcm_vrai as select count(vrai),idrecrutement from (select reponsetest.reponse::varchar sugg,question.reponse::varchar vrai,idrecrutement from reponsetest join question on reponsetest.idquestion=question.idquestion join test on question.idtest=test.idtest ) as result   where sugg=vrai group by idrecrutement;
-
-select count(idreponsetest), idrecrutement from reponsetest join question on reponsetest.idquestion=question.idquestion join test on question.idtest=test.idtest group by idrecrutement;
-
-create view resultat_test as  select sum(note)/count(idreponsetest) val, idcandidat,idrecrutement from reponsetest join question on reponsetest.idquestion=question.idquestion join test on question.idtest=test.idtest group by idcandidat,idrecrutement;
 
 create view v_stats_appointment as 
 select recrutement.idrecrutement, nomposte, moyenne from recrutement left join (select idrecrutement,avg(noty) as moyenne from appointment group by idrecrutement) as moy on moy.idrecrutement=recrutement.idrecrutement ;
+
+CREATE VIEW V_test
+AS
+SELECT 
+reponsetestCandidat.*,
+candidat.nom,
+candidat.prenom,
+recrutement.nomposte,
+test.fichier as exam
+FROM reponsetestCandidat
+JOIN candidat ON
+candidat.idcandidat=reponsetestCandidat.idcandidat 
+JOIN recrutement ON
+recrutement.idrecrutement= reponsetestCandidat.idrecrutement
+JOIN test ON
+test.idrecrutement=recrutement.idrecrutement
+;
