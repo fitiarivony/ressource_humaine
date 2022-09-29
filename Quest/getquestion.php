@@ -1,5 +1,6 @@
 <?php
 include '../error/Error.class.php';
+header('Access-Control-Allow-Origin: http://localhost:3000');
 $question=$_GET["rc"];
 $dir="Questions/";
 $aller=$dir.$question.".json";
