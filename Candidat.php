@@ -59,7 +59,11 @@ class Candidat
         executeUpdate($sql);
     }
 
-
+    static function listembauche($idrecrutement){
+        $sql="select*from assignercandidature join candidat on candidat.idcandidat=assignercandidature.idcandidat where idrecrutement='%s'";
+        $sql=sprintf($sql,$idrecrutement);
+        return executeQuery($sql);
+    }
     
 }
 

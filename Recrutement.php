@@ -11,5 +11,9 @@ class Recrutement{
         on recrutement.iddept=departement.iddept";
         return executeQuery($sql);
     }
+    static function get_recrutement_done(){
+        $sql="SELECT * FROM recrutement where cloture=0";
+        return executeQuery($sql);
+    }
 }
 ?>
