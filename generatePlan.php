@@ -3,27 +3,27 @@ header('Access-Control-Allow-Origin: http://localhost:3000');
 
 include_once './APPLICATION_PHP/baseconf.php';
 class Employe{
-    public $idEmploye;
+    public $idemploye;
     public $nom;
     public $prenom;
-    public $idDepartment;
+    public $iddept;
     
 }
 // function listeEmplDept($idDept){
     // include './APPLICATION_PHP/baseconf.php';
 // }
 $test=array();
-for ($i=0; $i < 100; $i++) { 
+for ($i=0; $i < 5; $i++) { 
     $test[]=array('idEmploye'=>"EMP".($i+1), 'nom'=>"Rakoto",'prenom'=>"Ndrema",'idDepartment'=>"DEPT1");
 }
 
 $idDept=isset($_GET["idDept"])?$_GET["idDept"]:"DE1";
 $listeOlona=array('EMP1','EMP2','EMP3','EMP4','EMP5','EMP6','EMP7','EMP8','EMP9','EMP10','EMP11','EMP12','EMP13','EMP14','EMP15','EMP16');
-$r->get(new Employe(),"employe","idEmploye,nom,prenom,iddept","iddept='$idDept'");
+$test=$r->get(new Employe(),"employe","idEmploye,nom,prenom,iddept","iddept='$idDept'");
 
 function findFirstSat($annee){
     $debut=mktime(8,0,0,7,1,$annee);
-    while (date("N",$debut)!=6) {
+    while (date("N",$debut)!=1) {
         $debut=mktime(8,0,0,7,date("j",$debut)+1,$annee);
     }
     return $debut;
@@ -60,17 +60,17 @@ function coupe(array $listeOlona){
     return $res;
     
 }
-$annee=2022;
+$annee=isset($_GET["daty"])?$_GET["daty"]:2022;
+// echo $annee;
 function genPlan($annee, $listeOlona){
     $partage=coupe($listeOlona);
     $daty=genDaty($annee);
+    // print_r($partage);
     $data=array();
-    for ($i=0; $i < count($partage); $i++) { 
+    for ($i=0; $i < 7; $i++) { 
         $data[]=array("partage"=>$partage[$i], "daty"=>$daty[$i]);
     }
     echo json_encode($data);
 }
 // $listeOlona=Employe::listeEmplDept("DPT1");
 genPlan($annee, $test);
-
-?>
