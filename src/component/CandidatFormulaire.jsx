@@ -29,7 +29,7 @@ export default function CandidatFormulaire()
 
      let callchamp= () =>{
        
-        askAnnee(URLHelper.urlgen("inscription/champgenre.php?recrutement="+recrutement));
+        askAnnee(URLHelper.urlgen("inscription/champgenre.php?idrecrutement="+recrutement));
     }
      const [annee,experience]=useState([]);
    let askAnnee=(url)=>{
