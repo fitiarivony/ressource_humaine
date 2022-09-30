@@ -27,6 +27,7 @@ class Employe
         echo $sql;
         // executeUpdate($sql);
     }
+    
     static function getGenre($idcandidat,$idrecrutement){
         $sql="SELECT * from reponsechamp join champ on reponsechamp.idchamp=champ.idchamp where idrecrutement='%s' and idcandidat='%s' and nom='genre'";
         $sql=sprintf($sql,$idrecrutement,$idcandidat);
@@ -51,6 +52,30 @@ class Employe
         $sql="  select trunc(date_part('day',current_timestamp-dateEmbauche::timestamp)/7),employe.* from employe where trunc(date_part('day',current_timestamp-dateEmbauche::timestamp)/7)>=2";
         return executeQuery($sql);    
     }
+    public static function get_info($idcandidat,$idrecrutement){
+        $sql="SELECT * from candidat where idcandidat='%s'";
+        $sql=sprintf($sql,$idcandidat);
+        
+        $infocandidat=executeQuery($sql)[0];
+        $candidat=array(
+            "nom"=>$infocandidat["nom"],
+            "prenom"=>$infocandidat["prenom"],
+            "genre"=>Employe::getGenre($idcandidat,$idrecrutement),
+            "situation"=>Employe::getsituation_juridique($idcandidat,$idrecrutement),
+            "adresse"=>$infocandidat['adresse'],
+        );
+        return $candidat;
+
+    }
+    public static function getDepartement(){
+        $sql="SELECT *from departement";
+        return executeQuery($sql);
+    }
+    public static function getFonction(){
+        $sql="SELECT *from fonction";
+        return executeQuery($sql);
+    }
+
 }
 
 ?>
