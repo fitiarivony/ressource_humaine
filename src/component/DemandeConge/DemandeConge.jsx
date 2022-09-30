@@ -5,10 +5,34 @@ class DemandeConge extends Component {
         debut:"",
         fin:"",
         motif:"",
-        idemploye:"EM1"
+        idemploye:"EM1",
+        validity: true
+    }
+    constructor () {
+        super();
+        this.initialize();
+    }
+
+    initialize =()=> {
+        this.askService(URLHelper.urlgen("isEnoughOld.php"));
+        console.log(URLHelper.urlgen("isEnoughOld.php"));
+    }
+    askService = (url) => {
+        fetch(url,{crossDomain:true,method:'GET', headers: {}})
+        .then(res => { return res.json();})
+        .then(data=>{
+            this.setState({
+                validity: data.res
+            });
+        })
+    }
+    checkValidity = () => {
+        if (this.state.validity === false) {
+            return <p>Pour des raisons indépendantes de ma volonté, le système n'est pas en mesure de vous autoriser à demander un congé pour l'instant</p>
+        }
     }
     check=()=>{
-        if(this.state.debut!="" && this.state.fin!="" && this.state.motif!="" ){
+        if(this.state.debut!="" && this.state.fin!="" && this.state.motif!="" && this.state.validity===true ){
             return ""
         }
         else{
@@ -55,6 +79,7 @@ class DemandeConge extends Component {
     render() { 
         return (
             <React.Fragment>
+                {this.checkValidity()}
                 <table style={{width:"400px", margin: "auto"}}>
                     <thead>
                         <tr>

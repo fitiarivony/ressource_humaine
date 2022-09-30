@@ -8,16 +8,18 @@ class TablePlanning extends Component {
         }],
         table:[{ 
             partage:[{
-                idEmployee: "",
+                idemploye: "",
                 nom:"",
                 prenom:"",
-                idDepartement: ""
+                iddept: ""
             }],
             daty:{
                 debut:"",
                 fin:""
             }
-        }]
+        }],
+        iddept: "DE1",
+        an:new Date().getFullYear(),
     } 
     
     constructor () {
@@ -47,11 +49,22 @@ class TablePlanning extends Component {
             // console.log(this.departement);
          })
     }
-    handleChange=()=>{
-        this.updateTable(URLHelper.urlgen("generatePlan.php"));
+    handleChangeDept=(event)=>{
+        this.setState({iddept:event.target.value});
+        this.updateTable(URLHelper.urlgen("generatePlan.php?idDept=" + event.target.value+"&&daty="+this.state.an));
+    }
+    handleChangeAn=(event)=>{
+        this.setState({an:event.target.value});
+        this.updateTable(URLHelper.urlgen("generatePlan.php?idDept=" + this.state.iddept+"&&daty="+event.target.value));
     }
 
     render() { 
+        let annee=[];
+        for (let index = new Date().getFullYear() ; index <= new Date().getFullYear()+5  ; index++) {
+            annee.push(index);
+            
+        }
+        console.log(annee);
         return (
             <React.Fragment>
                 <table style={{width:"400px"}}>
@@ -59,9 +72,20 @@ class TablePlanning extends Component {
                         <tr>
                             <td>Choisir departement</td>
                             <td>
-                                <select name="test" id="sel" onChange={this.handleChange}>
+                                <select name="test" id="sel" onChange={this.handleChangeDept}>
                             {this.state.dept.map(oneDept=>
                                     <option value={oneDept.iddept}>{oneDept.nomdept}</option>
+                            )}
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Choisir annee</td>
+                            <td>
+                                <select name="test" id="sel" onChange={this.handleChangeAn}>
+                            
+                            {annee.map(an=>
+                                    <option value={an}>{an}</option>
                             )}
                                 </select>
                             </td>
@@ -83,7 +107,7 @@ class TablePlanning extends Component {
                         <React.Fragment>
                         {uniqShare.partage.map(part=>
                         <tr>
-                            <td>{part.idEmploye}</td>
+                            <td>{part.idemploye}</td>
                             <td>{part.nom}</td>
                             <td>{part.prenom}</td>
                             <td>{uniqShare.daty.debut}</td>
