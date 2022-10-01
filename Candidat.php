@@ -15,7 +15,7 @@ class Candidat
     {
         $sql="INSERT INTO candidat(nom,prenom,adresse,datedenaissance,email,mdp,nomdupere,nomdelamere) values ('%s','%s','%s','%s','%s','%s','%s','%s')";
         $sql=sprintf($sql,$array['nom'],$array['prenom'],$array['adresse'],$array['datenaissance'],$array['email'],$array['mdp'],$array['nompere'],$array['nommere']);
-        // echo $sql;
+        echo $sql."\n";
 
         executeUpdate($sql);
 
@@ -25,16 +25,17 @@ class Candidat
         foreach ($array as $value) {
             $diplome="INSERT INTO assignerdiplome(idcandidat,iddiplome,filiere) values ('%s','%s','%s') ";
            $diplome=sprintf($diplome,$idcandidat,$value['iddiplome'],$value['filiere']);
-           echo $diplome;
-           executeUpdate($diplome);
+        //    executeUpdate($diplome);
+        echo $diplome.'\n';
         }
+
     }
    static function remplirchamp($array,$idcandidat){
         
         foreach ($array as $value) {
             $sql="INSERT INTO reponsechamp(idcandidat,idchamp,valiny) values ('%s','%s','%s') ";
             $sql=sprintf($sql,$idcandidat,$value['idchamp'],$value['valiny']);
-            // echo $sql;
+            echo $sql."\n";
             executeUpdate($sql);
         }
     }
@@ -55,8 +56,9 @@ class Candidat
     }
     static function assignercandidature($idcandidat,$idrecrutement){
         $sql="INSERT INTO assignercandidature (idcandidat,idrecrutement) values('%s','%s')";
-        $sql=sprintf($sql,$idcandidat,$idrecrutement);
-        executeUpdate($sql);
+         $sql=sprintf($sql,$idcandidat,$idrecrutement);
+        echo $sql."\n";
+         executeUpdate($sql);
     }
 
     static function listembauche($idrecrutement){
