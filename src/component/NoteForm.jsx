@@ -1,6 +1,7 @@
 import './../assets/dist/css/bootstrap.min.css'
 import './../assets/css/CoefficientForm.css'
 import React, { Component } from 'react';
+import URLHelper from '../Helper/URLHelper';
 class NoteForm extends Component 
 {
     state = {
@@ -53,7 +54,7 @@ class NoteForm extends Component
         const params = new URLSearchParams(window.location.search);
         let idc=params.get("idc");
         let idr=params.get("idr");
-        this.askService("http://localhost/phpRH/infoCanditat.php?idc="+idc+"&idr="+idr);
+        this.askService(URLHelper.urlgen("infoCanditat.php?idc="+idc+"&idr="+idr));
     }
     askService = (url) => {
         console.log("askService");
@@ -90,7 +91,7 @@ class NoteForm extends Component
         console.log(url+"?test="+JSON.stringify(this.liste));
     }
     confirmMarks = ()=>{
-        this.sendData("http://localhost/phpRH/receiveMarks.php");
+        this.sendData(URLHelper.urlgen("receiveMarks.php"));
     }
     render() {
         return (

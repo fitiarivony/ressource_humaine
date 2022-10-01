@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import RdvMitokana from './RdvMitokana';
 import './../assets/dist/css/bootstrap.min.css'
 import './../assets/css/TableList.css'
+import URLHelper from '../Helper/URLHelper';
 
 class ListeRdvRO extends Component {
     initialize =()=> {
-        this.askService("http://localhost/phpRH/listeRdvNonFait.php");
+        this.askService(URLHelper.urlgen("listeRdvNonFait.php"));
     }
     askService = (url) => {
         fetch(url,{crossDomain:true,method:'GET', headers: {}})

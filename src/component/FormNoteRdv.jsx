@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import URLHelper from '../Helper/URLHelper';
 class FormNoteRdv extends Component {
     state = { 
         value: ''
@@ -21,7 +22,7 @@ class FormNoteRdv extends Component {
         })
     }
     confirmMark = ()=>{
-        this.sendData("http://localhost/phpRH/receiveUpdate.php");
+        this.sendData(URLHelper.urlgen("receiveUpdate.php"));
     }
     render() { 
         const params = new URLSearchParams(window.location.search);

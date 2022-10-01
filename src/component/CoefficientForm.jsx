@@ -1,6 +1,6 @@
 import './../assets/dist/css/bootstrap.min.css'
 import './../assets/css/CoefficientForm.css'
-import { useState } from "react";
+import React, { useState } from "react";
 import { useParams} from "react-router-dom";
 import URLHelper from '../Helper/URLHelper';
 
@@ -11,6 +11,7 @@ export default function CoefficientForm()
         // console.log(idrecrutement);
         let url="saisiecoefficient/getchamps.php?idrecrutement="+idrecrutement;
         askAnnee(URLHelper.urlgen(url));
+        console.log(URLHelper.urlgen(url));
     }
      const [champs,setchamp]=useState([]);
    let askAnnee=(url)=>{
@@ -47,7 +48,7 @@ export default function CoefficientForm()
     }
     return (
        
-
+        <React.Fragment>
         <div className="container">
 
         <div className="row justify-content-center">
@@ -104,5 +105,6 @@ export default function CoefficientForm()
 
         </div>
         </div>
+        </React.Fragment>
     );
 }

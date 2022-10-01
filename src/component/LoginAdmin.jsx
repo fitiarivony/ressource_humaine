@@ -1,4 +1,5 @@
 import { Component } from "react";
+import URLHelper from "../Helper/URLHelper";
 import "./../assets/css/LoginAdmin.css"
 import imageSource from './../assets/img/admin.png'
 
@@ -26,7 +27,7 @@ class LoginAdmin extends Component{
     callchamp= () =>{
         const sending={"identifiant":this.state.email,"mdp":this.state.mdp};
       
-        this.askAnnee("http://localhost/RH/logAdmin/login.php?essai="+  JSON.stringify({"essai":sending}));
+        this.askAnnee(URLHelper.urlgen("logAdmin/login.php?essai="+  JSON.stringify({"essai":sending})));
     }
         askAnnee=(url)=>{
             // const navigate = useNavigate();
@@ -37,7 +38,8 @@ class LoginAdmin extends Component{
             console.log(data);
             if (data.etat) {
             //   navigate("/");
-               
+            //  this.context.router.push("/test");
+             window.location.replace("http://localhost:3000/mainAdmin")  
             }else{
                 alert("erreur");
                 console.log("echec");

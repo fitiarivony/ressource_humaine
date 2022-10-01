@@ -22,8 +22,8 @@ class ListeRdv extends Component {
     initialize =()=> {
         const params = new URLSearchParams(window.location.search);
         let data=params.get("data");
-        this.askService("http://localhost/phpRH/testFA.php?data="+data);
-        console.log("http://localhost/phpRH/testFA.php?data="+data);
+        this.askService(URLHelper.urlgen("testFA.php?data="+data));
+        console.log(URLHelper.urlgen("testFA.php?data="+data));
     }
 
     setRDVS=temp=>{
@@ -127,9 +127,9 @@ class ListeRdv extends Component {
                         <table className="table table-striped table-sm" style={this.style}>
                             <thead>
                                 <tr>
-                                    <th>Candidat</th>
-                                    <th>Heure RDV</th>
-                                    <th>Bureau</th>
+                                    <th style={{color:"black"}}>Candidat</th>
+                                    <th style={{color:"black"}}>Heure RDV</th>
+                                    <th style={{color:"black"}}>Bureau</th>
                                 </tr>
                             </thead>
                             <tbody>

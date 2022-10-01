@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import URLHelper from '../Helper/URLHelper';
-import './../assets/js/bs-init';
-import './../assets/js/theme';
+// import './../assets/js/bs-init';
+// import './../assets/js/theme';
 import FirstCard from './FirstCard';
 import SecondCard  from "./SecondCard";
 import StatRdv from './StatRdv';
@@ -69,24 +69,7 @@ class Statistique extends Component {
            ) }
                   
             </div> 
-            <div className="col">
-                 <div className="card shadow mb-4">
-                            <div className="card-header py-3">
-                                <h6 className="text-primary fw-bold m-0">Trois meileurs</h6>
-                            </div>
-                            <ul className="list-group list-group-flush">
-                                <li className="list-group-item">
-                                    <div className="row align-items-center no-gutters">
-                                        <div className="col me-2">
-                                            <h6 className="mb-0"><strong>Lunch meeting</strong></h6><span className="text-xs">10:30 AM</span>
-                                        </div>
-                                      
-                                    </div>
-                                </li>
-                                
-                            </ul>
-                        </div>
-                        </div>
+            
            </div>
            <StatRdv></StatRdv>
         </div><a className="border rounded d-inline scroll-to-top" href="#page-top"><i className="fas fa-angle-up"></i></a>
