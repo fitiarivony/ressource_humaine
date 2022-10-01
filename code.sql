@@ -109,7 +109,13 @@ insert into champ(nom,idrecrutement) values
 ('genre','RE2'),
 ('situation juridique','RE2'),
 ('annee experience','RE2'),
-('diplome','RE2')
+('diplome','RE2'),
+
+
+('genre','RE3'),
+('situation juridique','RE3'),
+('annee experience','RE3'),
+('diplome','RE3')
 ;
 
 create table reponsechamp(
