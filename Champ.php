@@ -16,7 +16,7 @@ class Champ
         }
     }
     static function select_all($idrecrutement){
-        $sql="SELECT * FROM champ where idrecrutement='%s' and nom!='genre' and nom!='diplome' ";
+        $sql="SELECT * FROM champ where idrecrutement='%s'  ";
         $sql=sprintf($sql,$idrecrutement);
         return executeQuery($sql);
 
