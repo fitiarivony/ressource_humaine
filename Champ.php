@@ -15,8 +15,9 @@ class Champ
            executeUpdate($sql);
         }
     }
-    static function select_all(){
-        $sql="SELECT * FROM champ";
+    static function select_all($idrecrutement){
+        $sql="SELECT * FROM champ where idrecrutement='%s' and nom!='genre' and nom!='diplome' ";
+        $sql=sprintf($sql,$idrecrutement);
         return executeQuery($sql);
 
     }
