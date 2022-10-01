@@ -205,3 +205,5 @@ recrutement.idrecrutement= reponsetestCandidat.idrecrutement
 JOIN test ON
 test.idrecrutement=recrutement.idrecrutement
 ;
+
+create view afaka_selection as select *from resultat_selection where note>=10;
