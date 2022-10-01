@@ -19,13 +19,14 @@ class Employe
         $sql=sprintf($sql,$idcandidat);
         $infocandidat=executeQuery($sql)[0];
         $sql="INSERT INTO employe
-        (nom,prenom,genre,adresse,situation_juridique,debany,idfonction,iddept,salairedebase) 
+        (nom,prenom,genre,adresse,situation_juridique,debany,idfonction,iddept,salairebase,idcandidat) 
         values 
-        ('%s','%s','%s','%s','%s','%s','%s','%s','%s')
+        ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')
         ";
-        $sql=sprintf($sql,$infocandidat['nom'],$infocandidat['prenom'],Employe::getGenre($idcandidat,$idrecrutement),$infocandidat['adresse'],Employe::getsituation_juridique($idcandidat,$idrecrutement),$this->debany,$this->idfonction,$this->iddept,$this->salairebase);
-        echo $sql;
-        // executeUpdate($sql);
+        $sql=sprintf($sql,$infocandidat['nom'],$infocandidat['prenom'],Employe::getGenre($idcandidat,$idrecrutement),substr($infocandidat['adresse'],0,19)  ,Employe::getsituation_juridique($idcandidat,$idrecrutement),$this->debany,$this->idfonction,$this->iddept,$this->salairebase,$idcandidat);
+      //  echo $sql;
+     
+        executeUpdate($sql);
     }
     
     static function getGenre($idcandidat,$idrecrutement){
@@ -63,6 +64,7 @@ class Employe
             "genre"=>Employe::getGenre($idcandidat,$idrecrutement),
             "situation"=>Employe::getsituation_juridique($idcandidat,$idrecrutement),
             "adresse"=>$infocandidat['adresse'],
+            "idcandidat"=>$infocandidat['idcandidat'],
         );
         return $candidat;
 
@@ -76,6 +78,18 @@ class Employe
         return executeQuery($sql);
     }
 
+    public static function getSuperieur($idfonction,$iddept){
+        $sql="SELECT *from employe where idfonction in(
+        select idfonction from categorie join fonction on categorie.idcategorie=fonction.idcategorie where substring(idgroupe from 3)::int>'%s') and iddept='%s' ";
+        $sql=sprintf($sql,Employe::getGroupe($idfonction),$iddept);
+        return executeQuery($sql);
+    }
+    public static function getGroupe($idfonction){
+        $sql="SELECT substring(idgroupe from 3)::int numgroupe from fonction join categorie on fonction.idcategorie=categorie.idcategorie where idfonction='%s' ";
+        $sql=sprintf($sql,$idfonction);
+
+        return executeQuery($sql)[0]['numgroupe'];
+    }
 }
 
 ?>
