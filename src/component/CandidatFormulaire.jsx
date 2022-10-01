@@ -44,6 +44,7 @@ export default function CandidatFormulaire()
      callchamp();
      
      const gophp= (informations) =>{
+        console.log(URLHelper.urlgen("inscription/subscribe.php?infocandidat="+informations));
         subscribe(URLHelper.urlgen("inscription/subscribe.php?infocandidat="+informations));
     }
     
@@ -62,12 +63,15 @@ export default function CandidatFormulaire()
         "email":document.getElementById("email").value,
         "mdp":document.getElementById("mdp").value,
         "nompere":document.getElementById("nompere").value,
-        "nommere":document.getElementById("nommere").value
+        "nommere":document.getElementById("nommere").value,
+        
      }
   //   alert("here");
     //  let tab=JSON.stringify(tableau);
     const diplomes=[];
     for (let index = 1; index < nbrDiplome; index++) {
+
+        console.log(document.getElementById("select"+index).value);
         const diplome={"iddiplome":document.getElementById("select"+index).value,"filiere":document.getElementById("input"+index).value};
         diplomes.push(diplome);   
     }
@@ -78,7 +82,8 @@ export default function CandidatFormulaire()
          champs.push(arg);
         return champs;
     });
-    champs.push({'ichamp':'CH1',"valiny":document.getElementById("genreSelect").value});
+
+    champs.push({'idchamp':'CH1',"valiny":document.getElementById("genre").value});
     const operations={
         "infocandidat":tableau,
         "diplomes":diplomes,
@@ -86,7 +91,7 @@ export default function CandidatFormulaire()
     }
 
  gophp(JSON.stringify({"info":operations,'idrecrutement': recrutement}));
-    navigate('/');
+   navigate('/');
     
     //   console.log(params);
     //  alert(tab+"-------------");
@@ -149,7 +154,7 @@ export default function CandidatFormulaire()
                                 <label className="form-label" htmlFor="Genre">
                                     <strong>Genre</strong>
                                 </label>
-                                <select name="CH1" id="genreSelect" className="form-control">
+                                <select name="CH1" id="genre" className="form-control">
                                     <option value="">Choix...</option>
                                     <option value="Homme">Homme</option>
                                     <option value="Femme">Femme</option>
