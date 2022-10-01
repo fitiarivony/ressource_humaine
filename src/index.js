@@ -27,6 +27,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
    <Routes>
+      {/* Entretien */}
       <Route path={'/rdent'} element={<ListeRdvPourEntretien/>}></Route>
       <Route path={'/rdfini'} element={<ListeRdvFini/>}></Route>
       <Route path={'/l'} element={<ListeRdv/>} ></Route>
@@ -34,15 +35,19 @@ root.render(
       <Route path={'/form'} element={<FormNoteRdv/>} ></Route>
       <Route path={'/init'} element={<FormOrganisationRdv/>} ></Route>
       <Route path={'/rdvsuivant'} element={<ListeRdvRO/>} ></Route>
+      <Route path={'/organiseRdv'} element={<ListeRecrutement/>}></Route>
+      <Route path={'/stats'} element={<Statistique/>}></Route>
+
       <Route path={'/noteform'} element={<NoteForm/>} ></Route>
       <Route path={'/'} element={<Accueil/>} ></Route>
       <Route path={'/mainClient'} element={<Annonce/>} ></Route>
       <Route path={'/mainAdmin'} element={<MainAdmin/>} ></Route>
       <Route path={'/depotcandidature/:recrutement'} element={<CandidatFormulaire/>}></Route>
-      <Route path={'/stats'} element={<Statistique/>}></Route>
-      <Route path={'/organiseRdv'} element={<ListeRecrutement/>}></Route>
+      
+     <Route path={'/recrnoceff'} element={<NoCoeffRecr/>}></Route>
       <Route path={'/listCandidature'} element={<ListeCandidature/>}></Route>
       <Route path={'/logAdmin'} element={<LoginAdmin/>}></Route>
+      <Route path={'/coeff/:idrecrutement'} element=<CoefficientForm/> ></Route>
       
       </Routes>
   </BrowserRouter>
