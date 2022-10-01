@@ -63,6 +63,37 @@
 
         
     }
+
+
+    class EmployeList
+    {
+        public function comptagecongeTable()
+        {
+            $conge=new Conge();
+            $nbrJour=0;
+            try {
+                $con = new PDO("pgsql:host=localhost;port=5432;dbname=rhtovo","societe", "mdp");
+                $sql="select * from employe";
+                $resultats=$con->query($sql);
+                $resultats->setFetchMode(PDO::FETCH_OBJ);
+                while ($resultat=$resultats->fetch()) {
+                    echo "<tr>
+                        <td>".$resultat->nom."</td>
+                        <td>".$resultat->prenom."</td>
+                        <td>".$conge->getNbrCongePris($resultat->idemploye)."</td>
+                        <td>".$resultat->salairebase."</td></tr>";
+                    
+                }
+            } 
+            catch (PDOException $e) 
+            {
+                        	print "Erreur ! : " . $e->getMessage();
+                        	die();
+            }
+            return $nbrJour;
+        }
+    }
+    
     
 
 
