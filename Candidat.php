@@ -60,7 +60,7 @@ class Candidat
     }
 
     static function listembauche($idrecrutement){
-        $sql="select*from assignercandidature join candidat on candidat.idcandidat=assignercandidature.idcandidat where idrecrutement='%s'";
+        $sql="select*from assignercandidature join candidat on candidat.idcandidat=assignercandidature.idcandidat where idrecrutement='%s' and candidat.idcandidat not in (select idcandidat from employe where idcandidat is not null);";
         $sql=sprintf($sql,$idrecrutement);
         return executeQuery($sql);
     }
