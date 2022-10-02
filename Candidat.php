@@ -67,6 +67,7 @@ class Candidat
         return executeQuery($sql);
     }
     
+    
 }
 
 ?>
