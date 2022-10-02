@@ -52,11 +52,42 @@ class CDI extends Component {
          });
         
     }
-    gmapPrint() {
-        let content = document.getElementById("contrat"); // get you map details
-        let newWindow = window.open(); // open a new window
-        newWindow.document.write(content.innerHTML); // write the map into the new window
-        newWindow.print(); // print the new window
+    gmapPrint=(event) =>{
+        event.preventDefault();
+        const params = new URLSearchParams(window.location.search); 
+        let objet={
+            "contrat":params.get("type"),
+            "idemploye":this.state.info.idemploye,
+            "datedebut":this.state.dateaj,
+            "datefin": document.getElementById("datefin").value,
+            "detail":"Contrat d essai"
+        }
+        this.insert(objet);
+       
+
+    }
+
+    insert=(information) => {
+        // console.log(information);
+        let url="classEmbauche/trait/assigner_contrat.php?information="+JSON.stringify(information);
+        this.URLInsert(URLHelper.urlgen(url));
+     console.log(URLHelper.urlgen(url));
+      
+    }
+    URLInsert=(url)=>{
+        fetch(url,{crossDomain:true,method:'GET',headers:{}})
+        .then(res=>{return res.json() ; })
+        .then(data=>{ 
+            if(data.etat){
+                let content = document.getElementById("contrat"); // get you map details
+                let newWindow = window.open(); // open a new window
+                newWindow.document.write(content.innerHTML); // write the map into the new window
+                newWindow.print(); // print the new window
+                window.location.replace("/accueilembauche");
+            }
+           
+         });
+        
     }
     render() { 
         return (
@@ -192,8 +223,7 @@ class CDI extends Component {
         </ol>
         
         </div>
-        Entrer la date de fin:<input type="date" className="form-control" placeholder="Date fin"/>
-
+        Entrer la date de fin:<input type="date" id="datefin" className="form-control" placeholder="Date fin"/>
         <button type="button" className="btn btn-primary" onClick={this.gmapPrint}>Imprimer</button>
         </div>
     );
