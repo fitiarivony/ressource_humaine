@@ -68,26 +68,26 @@ create table employe(
 -- Deba ny dept
 insert into employe(nom,prenom,adresse,genre,situation_juridique,idfonction,iddept,salairebase,datenaissance) values
 ('Rakoto','Jean','Andoharanofotsy','Homme','Propre','FO5','DE5',30000000,'29/03/2002'),
-('Rabe','Jeanne','Analakely','Femme','Propre','FO5','DE4',30000000,'29/02/2001'),
+('Rabe','Jeanne','Analakely','Femme','Propre','FO5','DE4',30000000,'29/03/2001'),
 ('Rajao','Johnny','Alarobia','Homme','Propre','FO5','DE3',30000000,'01/03/2002'),
-('Ravelo','Oli','Ambanidia','Femme','Propre','FO5','DE2',30000000,'29/03/2001'),
+('Ravelo','Oli','Ambanidia','Femme','Propre','FO5','DE2',30000000,'29/03/2001')
 ;
 
 -- Mpiasa ny dept
-insert into employe(nom,prenom,adresse,genre,situation_juridique,debany,idfonction,iddept,salairebase) values
-('Rabe','Rova','Ankadifotsy','Homme','Propre','EM1','FO4','DE1',10000000),
-('Rajao','Raly','Ambohimanarina','Femme','Propre','EM1','FO4','DE1',10000000),
-('Randria','Kolo','Ankadimbahoaka','Femme','Propre','EM6','FO3','DE1',5000000),
-('Randria','Johan','Antanimena','Homme','Propre','EM6','FO3','DE1',5000000),
-('Andria','Holy','Andraharo','Femme','Propre','EM1','FO2','DE1',800000),
-('Ravalo','Faly','Andraharo','Homme','Propre','EM1','FO2','DE1',8000000),
+insert into employe(nom,prenom,adresse,genre,situation_juridique,debany,idfonction,iddept,salairebase,datenaissance) values
+('Rabe','Rova','Ankadifotsy','Homme','Propre','EM1','FO4','DE1',10000000,'29/03/2002'),
+('Rajao','Raly','Ambohimanarina','Femme','Propre','EM1','FO4','DE1',10000000,'29/03/2002'),
+('Randria','Kolo','Ankadimbahoaka','Femme','Propre','EM6','FO3','DE1',5000000,'29/03/2002'),
+('Randria','Johan','Antanimena','Homme','Propre','EM6','FO3','DE1',5000000,'29/03/2002'),
+('Andria','Holy','Andraharo','Femme','Propre','EM1','FO2','DE1',800000,'29/03/2002'),
+('Ravalo','Faly','Andraharo','Homme','Propre','EM1','FO2','DE1',8000000,'29/03/2002'),
 
-('Andria','Faneva','Ankadifotsy','Homme','Propre','EM2','FO4','DE2',10000000),
-('Rasamy','Andy','Andraharo','Homme','Propre','EM2','FO4','DE2',10000000),
-('Andrianarison','Adrian','Betafo','Homme','Propre','EM12','FO3','DE2',8000000),
-('Rajaonarison','Raoul','Ambodivonkely','Homme','Propre','EM12','FO3','DE2',7000000),
-('Rabejahavo','Kanto','Anosivavaka','Femme','Propre','EM12','FO3','DE2',7000000),
-('Rakoto','Auriel','Alasora','Femme','Propre','EM12','FO3','DE2',6000000)
+('Andria','Faneva','Ankadifotsy','Homme','Propre','EM2','FO4','DE2',10000000,'29/03/2002'),
+('Rasamy','Andy','Andraharo','Homme','Propre','EM2','FO4','DE2',10000000,'29/03/2002'),
+('Andrianarison','Adrian','Betafo','Homme','Propre','EM12','FO3','DE2',8000000,'29/03/2002'),
+('Rajaonarison','Raoul','Ambodivonkely','Homme','Propre','EM12','FO3','DE2',7000000,'29/03/2002'),
+('Rabejahavo','Kanto','Anosivavaka','Femme','Propre','EM12','FO3','DE2',7000000,'29/03/2002'),
+('Rakoto','Auriel','Alasora','Femme','Propre','EM12','FO3','DE2',6000000,'29/03/2002')
 ;
 
 
