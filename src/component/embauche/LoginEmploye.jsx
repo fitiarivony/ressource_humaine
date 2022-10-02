@@ -1,20 +1,16 @@
 import { Component } from "react";
-import URLHelper from "../Helper/URLHelper";
-import "./../assets/css/LoginAdmin.css"
-import imageSource from './../assets/img/admin.png'
+import URLHelper from "../../Helper/URLHelper";
+import "./../../assets/css/LoginAdmin.css"
+import imageSource from './../../assets/img/admin.png'
 
-class LoginAdmin extends Component{
+class LoginEmploye extends Component{
     state={
-        email:"",
-        mdp:"",
+        numero:"",
     }
     handleChange=(event) => {
         // console.log(event.target.value);
-        if (event.target.name==="email") {
-           this.setState({email:event.target.value});
-        }else if(event.target.name==="pass"){
-            this.setState({mdp:event.target.value});
-        }
+           this.setState({numero:event.target.value});
+        
        
         // this.setState()
     };
@@ -25,9 +21,8 @@ class LoginAdmin extends Component{
         
     }
     callchamp= () =>{
-        const sending={"identifiant":this.state.email,"mdp":this.state.mdp};
-      
-        this.askAnnee(URLHelper.urlgen("logAdmin/login.php?essai="+  JSON.stringify({"essai":sending})));
+        console.log(URLHelper.urlgen("classEmbauche/trait/logEmploye.php?idemploye="+this.state.numero));
+        this.askAnnee(URLHelper.urlgen("classEmbauche/trait/logEmploye.php?idemploye="+this.state.numero))
     }
         askAnnee=(url)=>{
             // const navigate = useNavigate();
@@ -35,11 +30,12 @@ class LoginAdmin extends Component{
         fetch(url,{crossDomain:true,method:'GET',headers:{}})
         .then(res=>{return res.json() ; })
         .then(data=>{ 
-            console.log(data);
+            console.log(data.etat);
             if (data.etat) {
             //   navigate("/");
+            localStorage.setItem("idemploye",this.state.numero);
             //  this.context.router.push("/test");
-             window.location.replace("/option")  
+             window.location.replace("/accemp")  
             }else{
                 alert("erreur");
                 console.log("echec");
@@ -64,16 +60,11 @@ class LoginAdmin extends Component{
                         <form className="login100-form validate-form" onSubmit={this.handleSubmit}>
 
                             <span className="login100-form-title">
-                                Administrateur
+                                Veuillez inserer votre numero employer
                             </span>
 
                             <div className="wrap-input100 validate-input" data-validate = "Admin's name is required">
-                                <input className="input100" type="text" value={this.state.email} onChange={this.handleChange} name="email" placeholder="Email" />
-                                <span className="focus-input100"></span>
-                            </div>
-
-                            <div className="wrap-input100 validate-input" data-validate = "Password is required">
-                                <input className="input100" type="password" value={this.state.mdp} onChange={this.handleChange} name="pass" placeholder="Password" />
+                                <input className="input100" type="text" value={this.state.numero} onChange={this.handleChange} name="numero" placeholder="numero" />
                                 <span className="focus-input100"></span>
                             </div>
                             
@@ -91,4 +82,4 @@ class LoginAdmin extends Component{
     }
 }
 
-export default LoginAdmin
+export default LoginEmploye

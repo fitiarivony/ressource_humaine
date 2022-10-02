@@ -14,14 +14,16 @@ class Accueil extends Component {
           <div className="item">
            
             <div className="img-fill">
-                <img src={imageSource} style={{float:"left"}}/> 
+                <img src={imageSource} style={{float:"left"}} alt=""/> 
                
             </div>
             <div className="text-content" style={{float:"right"}}>
                
                 <h5>Bienvenue!!!</h5>
-                <Link to="/mainClient" className="main-stroked-button">Client</Link>
+                <Link to="/mainClient" className="main-stroked-button">Candidature</Link>
                 <Link to="/logAdmin" className="main-stroked-button">Administrateur</Link>
+                <Link to="/logEmploye" className="main-stroked-button">Employe</Link>
+
               </div>
            
           </div>

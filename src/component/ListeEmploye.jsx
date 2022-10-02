@@ -10,7 +10,6 @@ class ListeCandidature extends Component {
     initialize =()=> {
         const params = new URLSearchParams(window.location.search);
         let data=params.get("id");
-        
         this.askService(URLHelper.urlgen("getCandidat.php?idrecrut="+data));
     }
     askService = (url) => {

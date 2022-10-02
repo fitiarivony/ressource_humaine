@@ -55,9 +55,8 @@ isThere_notif(){
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <div className="d-flex  flex-column flex-lg-row align-items-center">
               <ul className="navbar-nav  ">
-                <li className="nav-item active">
-                  <Link className="nav-link" to="/recrutement_done">Embaucher un employer</Link>
-                </li>
+                <li className="nav-item"><Link className="nav-link" to="/recrutement_done">Embaucher un employer</Link></li>
+                <li className="nav-item"><Link className="nav-link" to="/planning">Planning congé</Link></li>
                
                 <div className="dropdown">
   <button className="nav-link dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">

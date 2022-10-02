@@ -27,7 +27,7 @@ render() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {tr.map((td => 
+                                    {this.state.tr.map((td => 
                                         <tr>
                                             <td>{td.valeur1}</td>
                                             <td>{td.valeur2}</td>

@@ -5,17 +5,18 @@ class DemandeConge extends Component {
         debut:"",
         fin:"",
         motif:"",
-        idemploye:"EM1",
+        idemploye:localStorage.getItem("idemploye"),
         validity: true
     }
     constructor () {
         super();
+        console.log("tonga izy");
         this.initialize();
     }
 
     initialize =()=> {
         this.askService(URLHelper.urlgen("isEnoughOld.php"));
-        console.log(URLHelper.urlgen("isEnoughOld.php"));
+       // console.log(URLHelper.urlgen("isEnoughOld.php"));
     }
     askService = (url) => {
         fetch(url,{crossDomain:true,method:'GET', headers: {}})
@@ -32,7 +33,7 @@ class DemandeConge extends Component {
         }
     }
     check=()=>{
-        if(this.state.debut!="" && this.state.fin!="" && this.state.motif!="" && this.state.validity===true ){
+        if(this.state.debut!=="" && this.state.fin!=="" && this.state.motif!=="" && this.state.validity===true ){
             return ""
         }
         else{
@@ -78,7 +79,7 @@ class DemandeConge extends Component {
     }
     render() { 
         return (
-            <React.Fragment>
+            <div className="container">
                 {this.checkValidity()}
                 <table style={{width:"400px", margin: "auto"}}>
                     <thead>
@@ -112,7 +113,7 @@ class DemandeConge extends Component {
                         </tr>
                     </tbody>
                 </table>
-            </React.Fragment>
+            </div>
         );
     }
 }

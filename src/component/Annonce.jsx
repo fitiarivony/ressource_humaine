@@ -40,7 +40,7 @@ export default function Annonce(props)
         <p>{champ.infoposte}</p> 
 
         <p>{champ.requis}</p>
-    <p><button className="btn btn-primary"><Link to={"/depotcandidature/"+champ.idrecrutement}  style={style}>Deposer ma candidature</Link></button> </p></center>
+    <p><Link className="btn btn-info" to={"/depotcandidature/"+champ.idrecrutement}  style={style}>Deposer ma candidature</Link></p></center>
 </div>
 </div>
 

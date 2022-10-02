@@ -29,6 +29,7 @@ class TablePlanning extends Component {
 
     initialize =()=> {
         this.askService(URLHelper.urlgen("listeDepartement.php"));
+        console.log(URLHelper.urlgen("listeDepartement.php"));
         // console.log("http://localhost/phpRH/listeDepartement.php");
     }
     askService = (url) => {
