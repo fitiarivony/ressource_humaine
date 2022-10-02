@@ -60,17 +60,17 @@ create table employe(
     idfonction varchar(10) not null,
     iddept varchar(10) not null,
     salairebase float not null,
+    datenaissance date,
     FOREIGN KEY (idfonction) REFERENCES fonction(idfonction),
     FOREIGN KEY (iddept) REFERENCES departement(iddept)
 );
 
 -- Deba ny dept
-insert into employe(nom,prenom,adresse,genre,situation_juridique,idfonction,iddept,salairebase) values
-('Rakoto','Jean','Andoharanofotsy','Homme','Propre','FO5','DE5',30000000),
-('Rabe','Jeanne','Analakely','Femme','Propre','FO5','DE4',30000000),
-('Rajao','Johnny','Alarobia','Homme','Propre','FO5','DE3',30000000),
-('Ravelo','Oli','Ambanidia','Femme','Propre','FO5','DE2',30000000),
-('Randria','Bema','Ambohibao','Homme','Propre','FO5','DE1',30000000)
+insert into employe(nom,prenom,adresse,genre,situation_juridique,idfonction,iddept,salairebase,datenaissance) values
+('Rakoto','Jean','Andoharanofotsy','Homme','Propre','FO5','DE5',30000000,'29/03/2002'),
+('Rabe','Jeanne','Analakely','Femme','Propre','FO5','DE4',30000000,'29/02/2001'),
+('Rajao','Johnny','Alarobia','Homme','Propre','FO5','DE3',30000000,'01/03/2002'),
+('Ravelo','Oli','Ambanidia','Femme','Propre','FO5','DE2',30000000,'29/03/2001'),
 ;
 
 -- Mpiasa ny dept
