@@ -49,15 +49,15 @@ render() {
 <hr />
             <div className="row">
                 <div className="col-md-3"></div>
-                <div className="col-md-3">
-                <div className="card shadow mb-3">
+                <div className="col-md-6">
+                <div className="container">
                                         
                                         <div className="title-card card-header py-3">
                                             <p className="text m-0 fw-bold">Candidat Embauché</p>
                                         </div>
                                 
                                         <div className="container">
-                                            <div className="d-flex flex-column flex-shrink-0">
+                                            <div >
                                                 <div className="table-responsive">
                                                     <table className="table table-striped table-bordered">
                                                         <thead>

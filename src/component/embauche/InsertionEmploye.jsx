@@ -86,13 +86,17 @@ class Embauche extends Component {
         let data2=params.get("idrecrutement");
         let data1=params.get("idcandidat");
         let url="classEmbauche/trait/insert_employe.php?idrecrutement="+data2+"&&idcandidat="+data1+"&&information="+information;
+        console.log(URLHelper.urlgen(url));
+
         this.getURLInsert(URLHelper.urlgen(url));
     }
     getURLInsert=(url)=>{
         fetch(url,{crossDomain:true,method:'GET',headers:{}})
         .then(res=>{return res.json() ; })
         .then(data=>{ 
-            console.log(data);
+            if(data.etat){
+                window.location.replace("/accueilembauche")
+            }
           
          });
     }

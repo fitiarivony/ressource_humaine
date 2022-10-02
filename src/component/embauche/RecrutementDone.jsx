@@ -3,6 +3,7 @@ import './../../assets/css/TableList.css'
 import React, { Component } from 'react'
 import URLHelper from './../../Helper/URLHelper';
 import {Link}  from 'react-router-dom';
+import NavEmbauche from './accueil/NavEmbauche'
 
 class  RecrutementDone extends Component  {
     state = {
@@ -32,6 +33,7 @@ render() {
 
     return(
         <div className="container">
+           
             <div className="row">
                 <div className="col-md-2"></div>
                 <div className="col-md-4">
