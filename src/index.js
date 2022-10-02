@@ -48,7 +48,17 @@ root.render(
       <Route path={'/listCandidature'} element={<ListeCandidature/>}></Route>
       <Route path={'/logAdmin'} element={<LoginAdmin/>}></Route>
       <Route path={'/coeff/:idrecrutement'} element=<CoefficientForm/> ></Route>
-      
+        {/* Embauche */}
+     <Route path={'/insertsm'} element={<InsertionSMA/>}></Route> 
+      <Route path={'/updatesm'} element={<UpdateSMA/>}></Route> 
+      <Route path={'/embauche'} element={<InsertionEmploye/>}></Route>
+      <Route path={'/recrutement_done'} element={<RecrutementDone/>}></Route>
+      <Route path={'/admis'} element={<ListeEmbauche/>}></Route>
+      <Route path={'/accueilembauche'} element={<AccueilEmbauche/>}></Route>
+      <Route path={'/CDD'} element={<CDD/>}></Route>
+      <Route path={'/CDI'} element={<CDI/>}></Route>
+      <Route path={'/Contrat d essai'} element={<ContratEssai/>}></Route>
+      <Route path={'/listenocontr'} element={<EmpNoContrat/>}></Route>
       </Routes>
   </BrowserRouter>
 );
