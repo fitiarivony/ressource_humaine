@@ -114,7 +114,16 @@ class Employe
         $sql=sprintf($sql,$array['idemploye'],$array['datedebut'],$array['datefin'],$array['detail'],Employe::getIdContrat($array['contrat']));
         // echo $sql;
         executeUpdate($sql);
-         return array("etat"=>"true");
+         return array("etat"=>true);
+    }
+    public static function logEmploye($idemploye){
+        $sql="SELECT * FROM employe WHERE idemploye='%s'";
+        $sql=sprintf($sql,$idemploye);
+        $valiny=executeQuery($sql);
+        if(count($valiny)==0){
+            return array("etat"=>false);
+        }
+        return array("etat"=>true);
     }
 }
 

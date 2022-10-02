@@ -9,6 +9,6 @@ $class = new Employe();
 foreach ($data as $key => $value) $class->{$key} = $value;
 $class->avis_embauchage($_GET['idcandidat'],$_GET['idrecrutement']);
 echo json_encode( array(
-    "etat"=>"true",
+    "etat"=>true,
 ));
 ?>
