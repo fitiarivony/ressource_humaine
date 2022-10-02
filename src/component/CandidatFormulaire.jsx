@@ -83,7 +83,8 @@ export default function CandidatFormulaire()
         return champs;
     });
 
-    champs.push({'idchamp':'CH1',"valiny":document.getElementById("genre").value});
+    champs.push({'idchamp':spec.filter((specs)=>specs.nom==="genre")[0].idchamp,"valiny":document.getElementById(spec.filter((specs)=>specs.nom==="genre")[0].idchamp).value});
+    champs.push({'idchamp':spec.filter((specs)=>specs.nom==="diplome")[0].idchamp,"valiny":nbrDiplome})
     const operations={
         "infocandidat":tableau,
         "diplomes":diplomes,
@@ -101,7 +102,26 @@ export default function CandidatFormulaire()
         backgroundColor:"#085451",
         color:'white',
      }
+
+     const [spec,setSpec]=useState([]);
+    const getChampSpec=() => {
+       
+        let url="inscription/getChampSpec.php?idrecrutement="+recrutement;
+        
+        getURLChampSpec(URLHelper.urlgen(url));
+    }
+ 
+   const getURLChampSpec=(url)=>{
+        fetch(url,{crossDomain:true,method:'GET',headers:{}})
+        .then(res=>{return res.json() ; })
+        .then(data=>{ 
+           setSpec(data);
     
+         });
+        
+    }
+   getChampSpec(); 
+    //  console.log();
     //  const params = new URLSearchParams(window.location.pathname);
     //  console.log(params.get("recrutement"));
     return (
@@ -154,7 +174,7 @@ export default function CandidatFormulaire()
                                 <label className="form-label" htmlFor="Genre">
                                     <strong>Genre</strong>
                                 </label>
-                                <select name="CH1" id="genre" className="form-control">
+                                <select name={spec.filter((specs)=>specs.nom==="genre")[0].idchamp} id={spec.filter((specs)=>specs.nom==="genre")[0].idchamp} className="form-control">
                                     <option value="">Choix...</option>
                                     <option value="Homme">Homme</option>
                                     <option value="Femme">Femme</option>
