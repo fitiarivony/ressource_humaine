@@ -4,7 +4,7 @@ class FirstCard extends Component {
     render() { 
         return (
             <div className="col">
-                            <div className="card text-center border-start-warning py-2">
+                            <div className="">
                                 <div className="card-body">
                                    
                                     <div className="row align-items-center no-gutters">
@@ -12,7 +12,6 @@ class FirstCard extends Component {
                                             <div className="text-uppercase text-warning fw-bold text-xs mb-1"><span>{this.props.attribut}</span></div>
                                             <div className="text-dark fw-bold h5 mb-0"><span>{this.props.value}</span></div>
                                         </div>
-                                        <div className="col-auto"><i className="fas fa-calendar fa-2x text-gray-300"></i></div>
                                     </div>
                                 </div>
                             </div>

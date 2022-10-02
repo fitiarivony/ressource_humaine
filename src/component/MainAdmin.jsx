@@ -9,8 +9,14 @@ class MainAdmin extends Component {
             <React.Fragment>
             <NavBar></NavBar>
             <div className="container">
-            <Link to="/stats" ><button className="btn btn-secondary">Statistique</button></Link>
-            <Link to="/organiseRdv" ><button className="btn btn-secondary">Organiser Rendez-vous</button></Link>
+            <div class="alert alert-primary" role="alert">
+            <Link to="/stats" >Statistique</Link>
+</div>
+<div class="alert alert-primary" role="alert">
+<Link to="/organiseRdv" >Organiser Rendez-vous</Link>
+</div>
+
+           
             </div>
            
             </React.Fragment>

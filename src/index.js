@@ -43,6 +43,7 @@ import LoginEmploye from "./component/embauche/LoginEmploye.jsx";
 import AccEmp from './component/AccueilEmploye/AccEmp';
 import DemandeConge from './component/DemandeConge/DemandeConge.jsx'
 import Option from "./component/Option/Option.jsx"
+import Comptage from './component/Comptage congé/Comptage';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
@@ -88,6 +89,7 @@ root.render(
       <Route path={'/accemp'} element={<AccEmp/>}></Route>
       <Route path={'/askconge'} element={<DemandeConge/>}></Route>
       <Route path={'/option'} element={<Option/>}></Route>
+      <Route path={'/compteconge'} element={<Comptage/>}></Route>
       </Routes>
   </BrowserRouter>
 );

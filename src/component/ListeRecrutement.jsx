@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import URLHelper from '../Helper/URLHelper';
 import { Link } from 'react-router-dom';
+import "bootstrap/dist/css/bootstrap.min.css";
 class ListeRecrutement extends Component {
     state = {
         tab:[
@@ -15,7 +16,7 @@ class ListeRecrutement extends Component {
     ]}
     style={
         textDecoration: 'none',
-        color: 'white',
+        color: 'rgb(46,75,160)',
     }
     callchamp = () =>{
         this.askAnnee(URLHelper.urlgen("annonce/selectall.php"));
@@ -36,7 +37,7 @@ class ListeRecrutement extends Component {
         return (
             <div className="row">
                 { this.state.tab.map(champ=>
-                <div className='card col-3 mb-3 '>
+                <div className='card col '>
                 <div className="row">
                 <div className="title-card card-header py-3">
                     <center><p className="text m-0 fw-bold">{champ.nomdept}</p></center>
@@ -47,12 +48,15 @@ class ListeRecrutement extends Component {
                     <h4 className="fw-bold">recherche {champ.nomposte} </h4>
                     <br />
 
-                    <p><button className="btn btn-primary"><Link to={"/coeff/"+champ.idrecrutement}  style={this.style}>Donner les coefficients</Link></button> </p>
-                    <p><button className="btn btn-primary"><Link to={"/listCandidature?id="+champ.idrecrutement}  style={this.style}>Noter les dossiers déposer</Link></button> </p>
-                    <p><button className="btn btn-primary"><Link to={"/listCandidature?id="+champ.idrecrutement}  style={this.style}>Creer les tests</Link></button> </p>
-                    <p><button className="btn btn-primary"><Link to={"/init?id="+champ.idrecrutement}  style={this.style}>Generer les rdv</Link></button> </p>
-                    <p><button className="btn btn-primary"><Link to={"/rdent?id="+champ.idrecrutement}  style={this.style}>Voir les rdv</Link></button> </p>
-                    <p><button className="btn btn-primary"><Link to={"/rdfini?id="+champ.idrecrutement}  style={this.style}>Voir les rdv finis</Link></button> </p></center>
+                    <ul className="list-group">
+  <li className="list-group-item list-group-item-secondary"  ><Link to={"/coeff/"+champ.idrecrutement}  style={this.style}>Donner les coefficients</Link></li>
+  <li className="list-group-item list-group-item-secondary"><Link to={"/listCandidature?id="+champ.idrecrutement}  style={this.style}>Noter les dossiers déposer</Link> </li>
+  <li className="list-group-item list-group-item-secondary"><Link to={"/listCandidature?id="+champ.idrecrutement}  style={this.style}>Creer les tests</Link></li>
+  <li className="list-group-item list-group-item-secondary"><Link to={"/init?id="+champ.idrecrutement}  style={this.style}>Generer les rdv</Link></li>
+  <li className="list-group-item list-group-item-secondary"><Link to={"/rdent?id="+champ.idrecrutement}  style={this.style}>Voir les rdv</Link> </li>
+  <li className="list-group-item list-group-item-secondary"><Link to={"/rdfini?id="+champ.idrecrutement}  style={this.style}>Voir les rdv finis</Link></li>
+</ul>
+                    </center>
                 </div>
                 </div>
 
