@@ -6,7 +6,7 @@
         {
             $nbrJour=0;
             try {
-                $con = new PDO("pgsql:host=localhost;port=5432;dbname=rhtovo","societe", "mdp");
+                $con = new PDO("pgsql:host=localhost;port=8089;dbname=rhtovo","societe", "mdp");
                 $sql="select * from conge where idemploye='".$idEmploye."'";
                 $resultats=$con->query($sql);
                 $resultats->setFetchMode(PDO::FETCH_OBJ);
@@ -32,7 +32,7 @@
         {
             $salaireBase=0;
             try {
-                $con = new PDO("pgsql:host=localhost;port=5432;dbname=rhtovo","societe", "mdp");
+                $con = new PDO("pgsql:host=localhost;port=8089;dbname=rhtovo","societe", "mdp");
                 $sql="select * from employe where idemploye='".$idEmploye."'";
                 $resultats=$con->query($sql);
                 $resultats->setFetchMode(PDO::FETCH_OBJ);
@@ -57,6 +57,7 @@
         public function calcule($idEmploye)
         {
             $value=$this->getNbrCongeNonPris($idEmploye)*$this->getSalaireBase($idEmploye);
+           
             $value=$value/30;
             return $value;
         }
@@ -72,25 +73,29 @@
             $conge=new Conge();
             $nbrJour=0;
             try {
-                $con = new PDO("pgsql:host=localhost;port=5432;dbname=rhtovo","societe", "mdp");
+                $con = new PDO("pgsql:host=localhost;port=8089;dbname=rhtovo","societe", "mdp");
                 $sql="select * from employe";
                 $resultats=$con->query($sql);
                 $resultats->setFetchMode(PDO::FETCH_OBJ);
+                $array=array();
+
                 while ($resultat=$resultats->fetch()) {
-                    echo "<tr>
-                        <td>".$resultat->nom."</td>
-                        <td>".$resultat->prenom."</td>
-                        <td>".$conge->getNbrCongePris($resultat->idemploye)."</td>
-                        <td>".$resultat->salairebase."</td></tr>";
-                    
+                    array_push($array,array(
+                        "idemploye"=>$resultat->idemploye,
+                        "nom"=>$resultat->nom,
+                        "prenom"=>$resultat->prenom,
+                        "conge"=>$conge->getNbrCongePris($resultat->idemploye),
+                        "chiffres"=>$conge->calcule($resultat->idemploye),
+                    ));
                 }
+               
             } 
             catch (PDOException $e) 
             {
                         	print "Erreur ! : " . $e->getMessage();
                         	die();
             }
-            return $nbrJour;
+            return json_encode($array);
         }
     }
     

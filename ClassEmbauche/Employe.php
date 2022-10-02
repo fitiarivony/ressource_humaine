@@ -44,15 +44,16 @@ class Employe
     public function affilier_cnaps(){
         $sql="UPDATE employe set matr_cnaps='%s' where idemploye='%s'";
         $sql=sprintf($sql,"CS".Employe::getNextval_cnaps(),$this->idemploye);
-        echo $sql;
-        // executeUpdate($sql);
+         echo $sql;
+        executeUpdate($sql);
+        echo json_encode(array("etat"=>true));
     }
     static function getNextval_cnaps(){
         $sql="SELECT nextval('affil_cnaps_seq') as valiny";
-        // return executeQuery($sql)[0]["valiny"];
+        return executeQuery($sql)[0]["valiny"];
     }
     public static function send_notif(){
-        $sql="  select trunc(date_part('day',current_timestamp-dateEmbauche::timestamp)/7),employe.* from employe where trunc(date_part('day',current_timestamp-dateEmbauche::timestamp)/7)>=2";
+        $sql="  select trunc(date_part('day',current_timestamp-dateEmbauche::timestamp)/7),employe.* from employe where trunc(date_part('day',current_timestamp-dateEmbauche::timestamp)/7)>=2 and matr_cnaps is  null";
         return executeQuery($sql);    
     }
     public static function get_info($idcandidat,$idrecrutement){
@@ -123,6 +124,13 @@ class Employe
         if(count($valiny)==0){
             return array("etat"=>false);
         }
+        return array("etat"=>true);
+    }
+    public static function insertmotif($idemploye,$motif){
+        $sql="INSERT INTO cnaps(idemploye,motif) values ('%s','%s')";
+        $sql=sprintf($sql,$idemploye,$motif);
+        // echo $sql;
+        executeUpdate($sql);
         return array("etat"=>true);
     }
 }

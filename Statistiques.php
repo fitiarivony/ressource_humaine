@@ -89,14 +89,14 @@ class Statistiques
         count(idreponse),'Femme' as sexe 
         from reponsechamp join champ 
         on reponsechamp.idchamp=champ.idchamp  
-        where reponsechamp.idchamp='CH1' and valiny like '%Femme%' and idrecrutement='".$idrecrutement."'
+        where champ.nom='genre' and valiny like '%Femme%' and idrecrutement='".$idrecrutement."'
         union
         select count(idreponse) nombre,'Homme' 
         from reponsechamp join champ 
         on reponsechamp.idchamp=champ.idchamp
-         where reponsechamp.idchamp='CH1' and valiny like '%Homme%' and idrecrutement='".$idrecrutement."';
+         where champ.nom='genre' and valiny like '%Homme%' and idrecrutement='".$idrecrutement."';
         ";
-        // echo $sql;
+        //echo $sql;
         $nb=executeQuery($sql);
         $predominance=array();
         if ($nb[0]["count"]>=$nb[1]["count"]) {
@@ -141,6 +141,15 @@ class Statistiques
             "second"=>$second,
         );
         return $val;
+    }
+    static function get_stats(){
+        $sql="SELECT * from recrutement where idrecrutement in (select idrecrutement from reponsechamp join champ on reponsechamp.idchamp=champ.idchamp)";
+        $result=executeQuery($sql);
+        $val=array();
+        for ($i=0; $i <count($result); $i++) { 
+          array_push($val,Statistiques::get_statistiques($result[$i]['idrecrutement']));
+        }
+        print_r($val);
     }
     
 }

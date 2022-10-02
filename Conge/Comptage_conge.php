@@ -1,8 +1,4 @@
-<?php
-    include_once("Conge.php");
 
-    $list=new EmployeList();
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,9 +27,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php
-                                    $list->comptagecongeTable();
-                                ?>                     
+                                                   
                             </tbody>
                         </table>
                     </div>
