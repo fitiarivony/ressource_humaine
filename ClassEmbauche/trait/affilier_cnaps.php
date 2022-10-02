@@ -2,8 +2,10 @@
 header('Access-Control-Allow-Origin:http://localhost:3000');
 include('../../connection.php');
 include('../Employe.php');
-$employe =new Employe();
-$employe->idemploye="EM9";
-$employe->affilier_cnaps();
+$json=$_GET['sm'];
+$data = json_decode($json, true);
+$class = new Employe();
+foreach ($data as $key => $value) $class->{$key} = $value;
+$class->affilier_cnaps();
 
 ?>

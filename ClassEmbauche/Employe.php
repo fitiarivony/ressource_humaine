@@ -13,17 +13,19 @@ class Employe
     public $idfonction;
     public $iddept;
     public $salairebase;
+    public $datenaissance;
 
   public  function avis_embauchage($idcandidat,$idrecrutement){
         $sql="SELECT * from candidat where idcandidat='%s'";
         $sql=sprintf($sql,$idcandidat);
+        // echo $sql;
         $infocandidat=executeQuery($sql)[0];
         $sql="INSERT INTO employe
-        (nom,prenom,genre,adresse,situation_juridique,debany,idfonction,iddept,salairebase,idcandidat) 
+        (nom,prenom,genre,adresse,situation_juridique,debany,idfonction,iddept,salairebase,idcandidat,datenaissance) 
         values 
-        ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')
+        ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')
         ";
-        $sql=sprintf($sql,$infocandidat['nom'],$infocandidat['prenom'],Employe::getGenre($idcandidat,$idrecrutement),substr($infocandidat['adresse'],0,19)  ,Employe::getsituation_juridique($idcandidat,$idrecrutement),$this->debany,$this->idfonction,$this->iddept,$this->salairebase,$idcandidat);
+        $sql=sprintf($sql,$infocandidat['nom'],$infocandidat['prenom'],Employe::getGenre($idcandidat,$idrecrutement),substr($infocandidat['adresse'],0,19)  ,Employe::getsituation_juridique($idcandidat,$idrecrutement),$this->debany,$this->idfonction,$this->iddept,$this->salairebase,$idcandidat,$infocandidat['datedenaissance']);
       //  echo $sql;
      
         executeUpdate($sql);
@@ -89,6 +91,30 @@ class Employe
         $sql=sprintf($sql,$idfonction);
 
         return executeQuery($sql)[0]['numgroupe'];
+    }
+    public static function getNoContrat(){
+        $sql="SELECT*from employe where idemploye not in(select idemploye from assignercontrat where datefin>current_timestamp);";
+        return executeQuery($sql);
+    }
+    public static function getEmploye($idemploye){
+        $sql="SELECT employe.*,nomdept,nomfonction,candidat.nomdupere,candidat.nomdelamere from employe join departement on employe.iddept=departement.iddept join fonction on employe.idfonction=fonction.idfonction left join candidat on employe.idcandidat=candidat.idcandidat where idemploye='%s'";
+        $sql=sprintf($sql,$idemploye);
+        return executeQuery($sql)[0];
+    }
+    public static function getIdContrat($nomcontrat){
+        $sql="SELECT * from contrat where typecontrat='%s'";
+        
+        $sql=sprintf($sql,$nomcontrat);
+        
+        return executeQuery($sql)[0]['idcontrat'];
+    }
+    public static function assignercontrat($array){
+      
+        $sql="INSERT INTO assignercontrat(idemploye,datedebut,datefin,detail,idcontrat) values ('%s','%s','%s','%s','%s')";
+        $sql=sprintf($sql,$array['idemploye'],$array['datedebut'],$array['datefin'],$array['detail'],Employe::getIdContrat($array['contrat']));
+        // echo $sql;
+        executeUpdate($sql);
+         return array("etat"=>"true");
     }
 }
 
