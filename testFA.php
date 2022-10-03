@@ -1,5 +1,6 @@
 <?php 
 header('Access-Control-Allow-Origin: http://localhost:3000');
+include ('connection.php');
 $data=json_decode($_GET['data'],true);
 // print_r($data);
 
@@ -23,9 +24,15 @@ function createBureau($data){
     }
     return $tab;
 }
+$sql="SELECT idcandidat FROM reponsetestCandidat where idrecrutement='%s' order by note desc limit 10"; 
+$sql=sprintf($sql,$data['idrecrutement']);
+$resultat=executeQuery($sql);
+$listeCandidat=array();
+foreach($resultat as $value){
+    array_push($listeCandidat,$value['idcandidat']);
+}
 
 
-$listeCandidat=["CA1","CA2","CA3","CA4","CA5","CA6"];
 $dateDeb = mktime(16,0,0,date("m"),date("d"),date("Y"));
 $dateDeb = createDateDeb($data['dateDebut']);
 createHeure($data['heureDeb']);

@@ -1,13 +1,31 @@
 {
     "question": [{
         "numero_question": 1,
-        "intitule_question": "vous-etes vivant?",
+        "intitule_question": "Comptiez-vous integrer notre companie?",
         "type_question": "CH",
         "reponse_possible": ["oui", "non"],
         "reponse_correct": "oui"
     }, {
+        "numero_question": 2,
+        "intitule_question": "Que pensez-vous des glaces?",
+        "type_question": "LIB",
+        "reponse_possible": [],
+        "reponse_correct": null
+    }, {
         "numero_question": 3,
-        "intitule_question": "vous-etes alefa?",
+        "intitule_question": "L'independance de Madagascar est le:?",
+        "type_question": "CH",
+        "reponse_possible": ["1er octobre 1960", "25 decembre 1960", "26 juin 1960"],
+        "reponse_correct": "26 juin 1960"
+    }, {
+        "numero_question": 4,
+        "intitule_question": "5% de 100 est-il 25?",
+        "type_question": "CH",
+        "reponse_possible": ["oui", "non"],
+        "reponse_correct": "non"
+    }, {
+        "numero_question": 5,
+        "intitule_question": "Donner le developpement d'euler de l'expo?",
         "type_question": "LIB",
         "reponse_possible": [],
         "reponse_correct": null

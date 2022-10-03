@@ -44,7 +44,7 @@ class Employe
     public function affilier_cnaps(){
         $sql="UPDATE employe set matr_cnaps='%s' where idemploye='%s'";
         $sql=sprintf($sql,"CS".Employe::getNextval_cnaps(),$this->idemploye);
-         echo $sql;
+        //  echo $sql;
         executeUpdate($sql);
         echo json_encode(array("etat"=>true));
     }

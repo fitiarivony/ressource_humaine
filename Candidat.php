@@ -25,8 +25,8 @@ class Candidat
         foreach ($array as $value) {
             $diplome="INSERT INTO assignerdiplome(idcandidat,iddiplome,filiere) values ('%s','%s','%s') ";
            $diplome=sprintf($diplome,$idcandidat,$value['iddiplome'],$value['filiere']);
-        //    executeUpdate($diplome);
-        echo $diplome.'\n';
+           executeUpdate($diplome);
+        // echo $diplome.'\n';
         }
 
     }
@@ -57,13 +57,14 @@ class Candidat
     static function assignercandidature($idcandidat,$idrecrutement){
         $sql="INSERT INTO assignercandidature (idcandidat,idrecrutement) values('%s','%s')";
          $sql=sprintf($sql,$idcandidat,$idrecrutement);
-        echo $sql."\n";
+       
          executeUpdate($sql);
     }
 
     static function listembauche($idrecrutement){
         $sql="select*from assignercandidature join candidat on candidat.idcandidat=assignercandidature.idcandidat where idrecrutement='%s' and candidat.idcandidat not in (select idcandidat from employe where idcandidat is not null);";
         $sql=sprintf($sql,$idrecrutement);
+        // echo $sql;
         return executeQuery($sql);
     }
     

@@ -40,7 +40,9 @@ class Request{
     }
 
     public function update($table,array $set,$where="1=1"):bool{
-       $sets="";
+      
+      
+        $sets="";
        $ct=0;
        $alava=count($set);
        foreach($set as $key=>$val){
@@ -51,12 +53,13 @@ class Request{
         $sets.= $key."=".$val.(($ct==$alava-1)?"":",");
         $ct++;
        }
-       
+      
        $query="UPDATE $table SET ".$sets." WHERE ".$where;
        $validation=false;
+    
         $statement=$this->connect->prepare($query);
-        $validation=$statement->execute();
-       return $validation;
+       
+       return $statement->execute();
     }
 }
 

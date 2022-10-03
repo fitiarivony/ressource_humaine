@@ -61,6 +61,7 @@ create table employe(
     iddept varchar(10) not null,
     salairebase float not null,
     datenaissance date,
+    idcandidat varchar(10),
     FOREIGN KEY (idfonction) REFERENCES fonction(idfonction),
     FOREIGN KEY (iddept) REFERENCES departement(iddept)
 );

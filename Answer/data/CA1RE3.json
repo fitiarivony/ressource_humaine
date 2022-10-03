@@ -1,0 +1,20 @@
+{
+    "idcandidat": "CA1",
+    "answers": [{
+        "numero": 1,
+        "answer": "1918"
+    }, {
+        "numero": 2,
+        "answer": "Je suis un etre tres doux et je veux tout partager."
+    }, {
+        "numero": 3,
+        "answer": "L'argent"
+    }, {
+        "numero": 4,
+        "answer": "fort"
+    }, {
+        "numero": 5,
+        "answer": "ordinateur"
+    }],
+    "recrutement": "RE3"
+}

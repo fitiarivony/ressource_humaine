@@ -14,7 +14,7 @@ $candidat=new Candidat();
 $candidat->email=$re->email;
 $candidat->mdp=$re->password;
 $r=new Request(Connection::connect("rhtovo","societe","mdp"));
-$ta=$r->get($candidat,"candidat","*","email='".$candidat->email."' and mdp='".$candidat->mdp."'");
+$ta=$r->get($candidat,"afaka_selection join candidat on afaka_selection.idcandidat=candidat.idcandidat","candidat.*","email='".$candidat->email."' and mdp='".$candidat->mdp."'");
 $c=((count($ta)>0)?$ta[0]:new Erreur("Invalid connection"));
 $json=json_encode($c);
 echo $json;

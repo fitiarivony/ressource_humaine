@@ -5,8 +5,16 @@ include '../Request.php';
 include '../Connect.php';
 include '../error/Error.class.php';
 // $a=json_encode($_GET["q"]);
+header('Access-Control-Allow-Origin: http://localhost:3000');
+header('Access-Control-Allow-Headers: *');
+header('Content-Type: application/json');
+
 $b=json_decode($_GET["q"]);
-// echo $b->idrecrutement;
+// echo "{\"question\":\""+$_POS+"\"}";
+// // print_r($_POST);
+// // echo $_POST["question"];
+// // var_dump($_POST);
+// // echo $b->idrecrutement;
 $ilaiko=$b->question;
 $valide=array();
 foreach($ilaiko as $i){
@@ -17,17 +25,17 @@ foreach($ilaiko as $i){
     }
 }
 
-$finality=new Questions($valide,$b->idrecrutement);
+$finality=new Questions($valide,$b->recrutement);
 $soratana=json_encode($finality);
 $directory="Questions/";
 if(!is_dir($directory)){
     mkdir($directory);
 }
-$file=$directory.$b->idrecrutement.".json";
+$file=$directory.$b->recrutement.".json";
 File::write($file,"w",$soratana);
 $r=new Request(Connection::connect("rhtovo","societe","mdp"));
 $dd=new Erreur("Teste creer");
-if(!$r->insert("test","idrecrutement,fichier","'".$b->idrecrutement."',"."'".$b->idrecrutement.".json"."'")){
+if(!$r->insert("test","idrecrutement,fichier","'".$b->recrutement."',"."'".$b->recrutement.".json"."'")){
     $dd=new Erreur("Votre teste n'a pas pu etre cree");
 }
 

@@ -1,14 +1,4 @@
-[
-    {"questions":
-        [
-            {
-                "numero_question":1,
-                "intitule_question":"Qu est ce que React",
-                "type_question":"CH",
-                "reponse_possible":["oui","non"],
-                "reponse_correct":"non"
-            }
-        ],
-            "recrutement":"RC1"
-    }
-]
+{"idcandidat":"CA1",
+"idrecrutement":"RE1",
+"note":[{"id":0,"numero":2,"note":1},
+{"id":1,"numero":5,"note":0}]}

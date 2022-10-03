@@ -2,6 +2,7 @@
 class Request{
     public ?PDO $connect=null;
     public function __construct(PDO $connection){
+      
         if($connection!=null){
             $this->connect = $connection;
         }
