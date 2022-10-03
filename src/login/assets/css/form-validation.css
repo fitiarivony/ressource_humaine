@@ -1,0 +1,12 @@
+.container {
+  max-width: 960px;
+}
+
+
+.hide_btn{
+  width: 0!important;
+  height: 0!important;
+  font-size: 0!important;
+  background: transparent!important;
+  border: transparent!important;
+}

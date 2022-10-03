@@ -41,11 +41,14 @@ assign=(idemploye) => {
   let url="classEmbauche/trait/affilier_cnaps.php?idemploye="+idemploye;
   console.log(URLHelper.urlgen(url));
   this.getURLassign(URLHelper.urlgen(url));
-   window.location.replace("/accueilembauche");
+  
 }
 
 getURLassign=(url)=>{
   fetch(url,{crossDomain:true,method:'GET',headers:{}});
+  // window.location.replace("/");
+  // document.getElementById('staticBackdrop').hide();
+
 }
 
 insertmotif=(idemploye) => {

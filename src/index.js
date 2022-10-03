@@ -25,6 +25,10 @@ import ListeCandidature from './component/ListeCandidature';
 import LoginAdmin from './component/LoginAdmin';
 import CoefficientForm from './component/CoefficientForm';
 import NoCoeffRecr from './component/NoCoeffRecr';
+import GenQuestion from "./GeNQuest/GenQuest";
+import Evaluate from "./evaluation/Evaluate";
+import Answer from "./answer/Answer";
+import Home from './Home';
 
 
 // Embauche
@@ -44,6 +48,8 @@ import AccEmp from './component/AccueilEmploye/AccEmp';
 import DemandeConge from './component/DemandeConge/DemandeConge.jsx'
 import Option from "./component/Option/Option.jsx"
 import Comptage from './component/Comptage congé/Comptage';
+import Login from './login/Login';
+import ListeRecr from './component/fillResult/ListRecr'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
@@ -69,7 +75,15 @@ root.render(
       <Route path={'/listCandidature'} element={<ListeCandidature/>}></Route>
       <Route path={'/logAdmin'} element={<LoginAdmin/>}></Route>
       <Route path={'/coeff/:idrecrutement'} element=<CoefficientForm/> ></Route>
-    
+
+      {/* Test */}
+      <Route path="/evaluer" element={<Evaluate></Evaluate>}/>
+                <Route path="/question" element={<GenQuestion></GenQuestion>}/>
+                <Route path="/home" element={<Home></Home>}/>
+                <Route path="/test" element={<Answer></Answer>}></Route>
+     <Route path='/logtest' element={<Login/>}></Route>
+     <Route path="/go_to_evaluate" element={<ListeRecr/>}> </Route>
+
 
      {/* Embauche */}
      <Route path={'/insertsm'} element={<InsertionSMA/>}></Route> 

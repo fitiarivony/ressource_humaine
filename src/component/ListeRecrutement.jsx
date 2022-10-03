@@ -51,7 +51,9 @@ class ListeRecrutement extends Component {
                     <ul className="list-group">
   <li className="list-group-item list-group-item-secondary"  ><Link to={"/coeff/"+champ.idrecrutement}  style={this.style}>Donner les coefficients</Link></li>
   <li className="list-group-item list-group-item-secondary"><Link to={"/listCandidature?id="+champ.idrecrutement}  style={this.style}>Noter les dossiers déposer</Link> </li>
-  <li className="list-group-item list-group-item-secondary"><Link to={"/listCandidature?id="+champ.idrecrutement}  style={this.style}>Creer les tests</Link></li>
+  
+  <li className="list-group-item list-group-item-secondary"><Link to={"/question?idrecrutement="+champ.idrecrutement}  style={this.style}>Creer les tests</Link></li>
+  <li className="list-group-item list-group-item-secondary"><Link to={"/go_to_evaluate?idrecrutement="+champ.idrecrutement}  style={this.style}>Noter les tests</Link> </li>
   <li className="list-group-item list-group-item-secondary"><Link to={"/init?id="+champ.idrecrutement}  style={this.style}>Generer les rdv</Link></li>
   <li className="list-group-item list-group-item-secondary"><Link to={"/rdent?id="+champ.idrecrutement}  style={this.style}>Voir les rdv</Link> </li>
   <li className="list-group-item list-group-item-secondary"><Link to={"/rdfini?id="+champ.idrecrutement}  style={this.style}>Voir les rdv finis</Link></li>

@@ -25,7 +25,7 @@ class FormOrganisationRdv extends Component {
         }
     } 
     handleChangeDeb=(event)=>{
-        console.log(event.target.value);
+        console.log(event.target.value,"-------");
         this.setState({
             dateDebut: event.target.value,
             heureDeb:this.state.heureDeb,

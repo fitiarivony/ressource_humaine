@@ -36,7 +36,9 @@ class Option extends Component {
                 <div className="col-md-2 col-sm-2 col-xs-12">
                     <div className="center-image">
                         <div className="inside-content">
-                          
+                        <div className="blue-border-button">
+                                <Link className='btn btn-success' to="/">Deconnexion</Link>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -60,7 +62,7 @@ class Option extends Component {
                 </div>
             </div>
         </div>
-    
+     
         </div>
 
 

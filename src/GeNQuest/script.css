@@ -1,0 +1,11 @@
+ .carte {
+     box-sizing: border-box;
+     box-shadow: 10px 10px 15px rgba(0, 0, 0, .2);
+     margin: 1.2em;
+     height: fit-content;
+ }
+ 
+ .bouton {
+     margin-right: 1em;
+     width: 5em;
+ }

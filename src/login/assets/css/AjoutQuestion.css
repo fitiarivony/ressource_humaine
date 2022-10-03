@@ -1,0 +1,48 @@
+
+.card{
+    border:1px solid #034965!important
+}
+
+.card-body{
+    background-color: #F5F5F5!important;
+}
+
+
+
+.title-card{
+    color: #F5F5F5!important;
+    background-color: #034965;
+    border-radius: 0%!important;
+}
+
+.submit{
+    color: #F5F5F5!important;
+    background-color: #0D5257!important;
+    width: 200px;
+    height: 40px;
+    border-radius: 10px!important;
+}
+
+.submit:hover{
+    background-color: #F5F5F5!important;
+    color: #0D5257!important;
+    border: 1px solid #0D5257!important;
+    width: 200px;
+    height: 40px;
+    border-radius: 10px!important;
+}
+
+input,select{
+    background-color: #FFF!important;
+    border: 1px solid #aaa!important;
+}
+
+input:focus,select:focus{
+    color: #034965!important;
+    border: 1px solid #034965!important;
+    box-shadow: none!important;
+}
+
+hr{
+    border: 1px solid #000!important;
+}

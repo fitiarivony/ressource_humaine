@@ -7,7 +7,7 @@ export default function Annonce(props)
 {
     const style={
         textDecoration: 'none',
-        color: 'white',
+        color: 'blue',
     }
     let callchamp= () =>{
         askAnnee(URLHelper.urlgen("annonce/selectall.php"));
@@ -27,20 +27,23 @@ export default function Annonce(props)
    
     return(
         <div className="row">
+            <div class="alert alert-primary" role="alert">
+<Link to="/logtest" >Se connecter pour passer au test</Link>
+</div>
 { champs.map(champ=>
-<div className='card col-3 mb-3 '>
+<div className='container '>
 <div className="row">
 <div className="title-card card-header py-3">
     <center><p className="text m-0 fw-bold">{champ.nomdept}</p></center>
 </div>
 
-<div className="card-body ">
+<div className="container ">
     <center>
     <h5 className="fw-bold">Nous recherchons {champ.nomposte} </h5>
         <p>{champ.infoposte}</p> 
 
         <p>{champ.requis}</p>
-    <p><Link className="btn btn-info" to={"/depotcandidature/"+champ.idrecrutement}  style={style}>Deposer ma candidature</Link></p></center>
+    <p><Link  to={"/depotcandidature/"+champ.idrecrutement}  style={style}>Deposer ma candidature</Link></p></center>
 </div>
 </div>
 
