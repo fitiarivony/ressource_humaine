@@ -1,9 +1,9 @@
 <?php
 //fonction connection à la base postgresql
 function returnConnection(){
-    $dsn='pgsql:host=localhost;port=5432;dbname=rhtovodev';
+    $dsn='pgsql:host=localhost;port=8089;dbname=rhtovo';
     try {
-        $dbh = new PDO($dsn, 'postgres', 'root');
+        $dbh = new PDO($dsn, 'societe', 'mdp');
         return $dbh;
         
     } catch (Exception $e) {

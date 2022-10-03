@@ -225,3 +225,5 @@ assignercandidature.idcandidat=candidat.idcandidat;
 ALTER TABLE reponsetestCandidat ADD COLUMN note integer default 0;
 
 create view afaka_selection as select *from resultat_selection where note>=10;
+
+create view moytestentr as select (noty+note)/2,appointment.idcandidat  from appointment join reponsetestcandidat on appointment.idcandidat=reponsetestcandidat.idcandidat ; 

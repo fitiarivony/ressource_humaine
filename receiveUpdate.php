@@ -16,3 +16,4 @@ $set=array("noty"=>$nb);
 
 $r->update("appointment",$set,$where);
 fclose($file);
+echo json_encode(array("etat"=>true));

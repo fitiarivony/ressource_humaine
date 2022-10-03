@@ -6,5 +6,5 @@ $insertion=json_decode($_GET['info'],true);
 
 // echo print_r($insertion);
 Champ::update_coefficient($insertion);
-echo "success";
+echo json_encode(array("etat"=>"success"));
 ?>

@@ -6,5 +6,4 @@ $employe = $_GET['idemploye'];
 $class = new Employe();
 $class->idemploye = $employe;
 $class->affilier_cnaps();
-
 ?>

@@ -21,3 +21,4 @@ for($i=0;$i<count($rdvs["rdvs"]);$i++){
 
 $values="'20-09-2015 15:00',null,'CA1'";
 fclose($file);
+echo json_encode(array("etat"=>true));
