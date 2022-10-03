@@ -95,7 +95,12 @@ class ListeRdv extends Component {
         console.log(this.state);
         console.log(JSON.stringify(this.state));
         fetch(url+"?test="+JSON.stringify(this.state), {method: 'GET', headers:{}
-        })
+        }) .then(res=>{return res.json() ; })
+        .then(data=>{ 
+            if(data.etat) window.location.replace("/mainAdmin");
+            // console.log(data);
+           
+         });
     }
     confirmAppointment = ()=>{
         this.sendData(URLHelper.urlgen("receive.php"));

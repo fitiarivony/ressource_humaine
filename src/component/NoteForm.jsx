@@ -87,11 +87,19 @@ class NoteForm extends Component
     }
     sendData = (url) =>{
         fetch(url+"?test="+JSON.stringify(this.liste), {method: 'GET', headers:{}
-        })
+        }).then(res=>{return res.json() ; })
+        .then(data=>{ 
+            console.log(data);
+            if(data.etat) window.location.replace("/mainAdmin");
+            // console.log(data);
+           
+         });
         console.log(url+"?test="+JSON.stringify(this.liste));
+       
     }
     confirmMarks = ()=>{
         this.sendData(URLHelper.urlgen("receiveMarks.php"));
+        
     }
     render() {
         return (

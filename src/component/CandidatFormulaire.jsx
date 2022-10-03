@@ -1,7 +1,7 @@
 import './../assets/dist/css/bootstrap.min.css'
 import './../assets/css/CandidatFormulaire.css'
 import DiplomeSelect from './DiplomeSelect';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import URLHelper from '../Helper/URLHelper';
 export default function CandidatFormulaire() 
@@ -41,12 +41,34 @@ export default function CandidatFormulaire()
          })
     }
    
-     callchamp();
+    
      
      const gophp= (informations) =>{
         console.log(URLHelper.urlgen("inscription/subscribe.php?infocandidat="+informations));
         subscribe(URLHelper.urlgen("inscription/subscribe.php?infocandidat="+informations));
     }
+    const [spec,setSpec]=useState([
+        {idchamp:"",nom:"genre",coefficient:1},
+        {idchamp:"",nom:"diplome",coefficient:1},
+    ]);
+    const getChampSpec=() => {
+       
+        let url="inscription/getChampSpec.php?idrecrutement="+recrutement;
+       
+        getURLChampSpec(URLHelper.urlgen(url));
+      
+    }
+ 
+   const getURLChampSpec=(url)=>{
+        fetch(url,{crossDomain:true,method:'GET',headers:{}})
+        .then(res=>{return res.json() ; })
+        .then(data=>{ 
+           setSpec(data);
+           // console.log(spec);
+         });
+        
+    }
+    
     
    const subscribe=(url)=>{
         fetch(url,{crossDomain:true,method:'GET',headers:{}})
@@ -103,24 +125,12 @@ export default function CandidatFormulaire()
         color:'white',
      }
 
-     const [spec,setSpec]=useState([]);
-    const getChampSpec=() => {
-       
-        let url="inscription/getChampSpec.php?idrecrutement="+recrutement;
-        
-        getURLChampSpec(URLHelper.urlgen(url));
-    }
- 
-   const getURLChampSpec=(url)=>{
-        fetch(url,{crossDomain:true,method:'GET',headers:{}})
-        .then(res=>{return res.json() ; })
-        .then(data=>{ 
-           setSpec(data);
-    
-         });
-        
-    }
-   getChampSpec(); 
+     useEffect(() => {
+        callchamp();
+        getChampSpec();
+        // Inside this callback function we perform our side effects.
+      });
+   
     //  console.log();
     //  const params = new URLSearchParams(window.location.pathname);
     //  console.log(params.get("recrutement"));
@@ -174,7 +184,7 @@ export default function CandidatFormulaire()
                                 <label className="form-label" htmlFor="Genre">
                                     <strong>Genre</strong>
                                 </label>
-                                <select name={spec.filter((specs)=>specs.nom==="genre")[0].idchamp} id={spec.filter((specs)=>specs.nom==="genre")[0].idchamp} className="form-control">
+                                <select name={spec.filter((special)=>special.nom==="genre")[0].idchamp} id={spec.filter((special)=>special.nom==="genre")[0].idchamp} className="form-control">
                                     <option value="">Choix...</option>
                                     <option value="Homme">Homme</option>
                                     <option value="Femme">Femme</option>

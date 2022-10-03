@@ -16,6 +16,7 @@ class  ListeEmbauche extends Component  {
         const params = new URLSearchParams(window.location.search);
         let data=params.get("idrecrutement");
         let url="classEmbauche/trait/candidat_admis.php?idrecrutement="+data;
+        console.log(URLHelper.urlgen(url));
         this.fillStats(URLHelper.urlgen(url));
     }
 

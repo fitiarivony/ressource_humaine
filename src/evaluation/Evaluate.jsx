@@ -37,7 +37,9 @@ class Evaluate extends Component {
         Terminal.requestJSON(BaseName.url()+"Answer/getAnswer.php?idrecrutement="+new URLSearchParams(window.location.search).get('idrecrutement')+"&idcandidat="+new URLSearchParams(window.location.search).get('idcandidat'),this.getData,{crossDomain:true,method:"GET",headers:{}});
     }
     getmessage=(data)=>{
-       
+       if(data.message!=null){
+        window.location.replace("/mainAdmin")
+       }
         console.log(data.message);
     }
     onSubmit= (event)=>{
@@ -50,7 +52,7 @@ class Evaluate extends Component {
         console.log(BaseName.url()+"Answer/evaluate.php?q="+JSON.stringify(tosend));
         Terminal.requestJSON(BaseName.url()+"Answer/evaluate.php?q="+JSON.stringify(tosend),this.getmessage,{crossDomain:true,method:"GET",headers:{}})
 
-        window.location.replace("/mainAdmin");
+      ;
     }
 
     takeNotes=(numero_question,note)=>{

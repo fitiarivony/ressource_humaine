@@ -45,7 +45,14 @@ assign=(idemploye) => {
 }
 
 getURLassign=(url)=>{
-  fetch(url,{crossDomain:true,method:'GET',headers:{}});
+  fetch(url,{crossDomain:true,method:'GET',headers:{}})
+  .then(res=>{return res.json() ; })
+        .then(data=>{ 
+            console.log(data);
+            if(data.etat)  window.location.replace("/accueilembauche");
+            // console.log(data);
+           
+         });
   // window.location.replace("/");
   // document.getElementById('staticBackdrop').hide();
 
@@ -56,11 +63,17 @@ insertmotif=(idemploye) => {
   let url="classEmbauche/trait/insert_motif.php?idemploye="+idemploye+"&&motif="+this.state.motif;
   console.log(URLHelper.urlgen(url));
   this.getURLmotif(URLHelper.urlgen(url));
-  window.location.replace("/accueilembauche");
 }
 
 getURLmotif=(url)=>{
-  fetch(url,{crossDomain:true,method:'GET',headers:{}});
+  fetch(url,{crossDomain:true,method:'GET',headers:{}})
+  .then(res=>{return res.json() ; })
+        .then(data=>{ 
+            console.log(data);
+            if(data.etat)  window.location.replace("/accueilembauche");
+            // console.log(data);
+           
+         });
 }
 
 

@@ -9,7 +9,7 @@ import FormNoteRdv from './component/FormNoteRdv';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import  {
-  BrowserRouter,Routes,Route
+  BrowserRouter,Routes,Route,Navigate
   } from "react-router-dom";  
 import FormOrganisationRdv from './component/FormOrganisationRdv';
 import ListeRdvRO from './component/ListeRdvRO';
@@ -104,6 +104,8 @@ root.render(
       <Route path={'/askconge'} element={<DemandeConge/>}></Route>
       <Route path={'/option'} element={<Option/>}></Route>
       <Route path={'/compteconge'} element={<Comptage/>}></Route>
+
+     
       </Routes>
   </BrowserRouter>
 );

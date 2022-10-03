@@ -40,11 +40,17 @@ export default function CoefficientForm()
      const gophp= (informations) =>{
         let url1="saisiecoefficient/updatecoefficient.php?info="+informations;
         subscribe(URLHelper.urlgen(url1));
-        window.location.replace("/mainAdmin");
+       
     }
     
    const subscribe=(url)=>{
         fetch(url,{crossDomain:true,method:'GET',headers:{}})
+        .then(res=>{return res.json() ; })
+        .then(data=>{ 
+            if(data.etat) window.location.replace("/mainAdmin");
+            // console.log(data);
+           
+         });
         
     }
     return (

@@ -20,6 +20,12 @@ class FormNoteRdv extends Component {
         console.log(url+"?idcl="+this.id+"&idre="+this.idre+"&nb="+this.nb);
         fetch(url+"?idcl="+this.id+"&idre="+this.idre+"&nb="+this.nb, {method: 'GET', headers:{}
         })
+        .then(res=>{return res.json() ; })
+        .then(data=>{ 
+            if(data.etat) window.location.replace("/mainAdmin");
+            // console.log(data);
+           
+         });
     }
     confirmMark = ()=>{
         this.sendData(URLHelper.urlgen("receiveUpdate.php"));

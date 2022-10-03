@@ -12,7 +12,7 @@ class NavBar extends Component {
       </div>
       <nav id="mainav" className="fl_right">
         <ul className="clear">
-          <li className="active"><a href="/mainAdmin">Home</a></li>
+          <li className="active"><a href="/option">Home</a></li>
           <li>Selection de dossier
             <ul>
               <li><Link to="/recrnoceff">Coefficient</Link></li>

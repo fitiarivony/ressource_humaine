@@ -60,9 +60,10 @@ class Answer extends Component {
         if(data.message!=null){
             // this.setState({message:data.message});
             console.log(data.message);
+            window.location.href="/home";
         }else{
             console.log("tsy misy e");
-            // window.location.href="/home";
+           
         }
     }
     handleSubmit=(event)=>{
@@ -77,7 +78,9 @@ class Answer extends Component {
         let url=this.urlhelper.sendtest+"?q="+JSON.stringify(alefa);
         console.log(url);
         this.request(url,this.signal);
-        window.location.replace("home")
+        
+        
+
     }
     render() {
         // let isa=this.state.answers.find((t)=>t.answer==="");
