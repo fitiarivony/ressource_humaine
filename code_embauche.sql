@@ -156,7 +156,7 @@ create view v_repart_sex as
 select (count(idemploye)::float/(select count(idemploye) from employe)::float) as isa, genre from employe group by genre;
 
 create view v_emp_cat as 
-select count( idemploye), nomcategorie from employe join fonction on fonction.idfonction=employe.idfonction join categorie on categorie.idcategorie=fonction.idcategorie group by nomcategorie;
+select count( idemploye) as isa, nomcategorie from employe join fonction on fonction.idfonction=employe.idfonction join categorie on categorie.idcategorie=fonction.idcategorie group by nomcategorie;
 
 create view v_emp_dept as 
 select count(idemploye) as isa, nomdept from employe join departement on departement.iddept=employe.iddept group by nomdept; 
