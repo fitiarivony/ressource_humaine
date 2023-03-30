@@ -76,6 +76,7 @@ class Evaluate extends Component {
                                 <h1 className="text-center text-dark">Les Reponses du candidat {this.state.candidat.nom+" "+this.state.candidat.prenom}</h1>
                                 <h2 className="text-dark text-center text-opacity-75">Pour le poste de/d' {this.state.poste}</h2>
                             </div>
+                            
                             <hr className="text-dark border-3 opacity-50"/>
                             <div className="col col-lg-12 col-md-12">
                                 <form className="form" onSubmit={this.onSubmit}>
