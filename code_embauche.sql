@@ -119,16 +119,7 @@ create table conge(
     accepte boolean default null,
     FOREIGN KEY (idemploye) REFERENCES employe(idemploye)
 );
-insert into conge(idemploye,datedebut,datefin,motif)values
-('EM1','03/04/2022 09:00','04/04/2022 10:00','Urgence'),
-('EM3','03/05/2022 09:00','04/05/2022 10:00','Vacances'),
-('EM2','10/04/2022 09:00','12/04/2022 10:00','Vacances')
-;
-create view v_deductible as 
-select 
-case when sum(extract(day from age(datefin::timestamp,datedebut::timestamp)))-30>0 then sum(extract(day from age(datefin::timestamp,datedebut::timestamp)))-30 else 0 end as deductible
-,sum(extract(day from age(datefin::timestamp,datedebut::timestamp))),
-idemploye,extract(year from datedebut) from conge group by idemploye,extract(year from datedebut);
+
 
 create table cnaps(
     idcnaps varchar(10) default 'CN' ||nextval('cnaps_seq') primary key,
@@ -160,15 +151,6 @@ insert into salaires(idcategorie,sme,sma) values
 ('CA6',192230,204634),('CA9',192230,204634),
 ('CA7',203944,217036),('CA10',203944,217036)
 ;
-
-create view v_repart_sex as
-select (count(idemploye)::float/(select count(idemploye) from employe)::float) as isa, genre from employe group by genre;
-
-create view v_emp_cat as 
-select count( idemploye) as isa, nomcategorie from employe join fonction on fonction.idfonction=employe.idfonction join categorie on categorie.idcategorie=fonction.idcategorie group by nomcategorie;
-
-create view v_emp_dept as 
-select count(idemploye) as isa, nomdept from employe join departement on departement.iddept=employe.iddept group by nomdept; 
 
 
 

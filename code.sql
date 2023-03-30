@@ -140,9 +140,6 @@ create table test(
     FOREIGN KEY(idrecrutement) REFERENCES recrutement(idrecrutement)
 );
 
-insert into test(idrecrutement) values
-('RE1')
-;
 
 
 CREATE TABLE reponsetestCandidat(
@@ -212,4 +209,21 @@ JOIN test ON
 test.idrecrutement=recrutement.idrecrutement
 ;
 
+CREATE OR REPLACE VIEW Embauche
+AS
+
+SELECT recrutement.*,nomdept,candidat.nom nomcandidat,candidat.prenom prenomcandidat,candidat.idcandidat
+from recrutement
+join 
+departement on
+recrutement.iddept=departement.iddept
+join assignercandidature on
+assignercandidature.idrecrutement=recrutement.idrecrutement
+join candidat on 
+assignercandidature.idcandidat=candidat.idcandidat;
+
+ALTER TABLE reponsetestCandidat ADD COLUMN note integer default 0;
+
 create view afaka_selection as select *from resultat_selection where note>=10;
+
+create view moytestentr as select (noty+note)/2 note,appointment.idcandidat  from appointment join reponsetestcandidat on appointment.idcandidat=reponsetestcandidat.idcandidat ; 
